@@ -114,10 +114,6 @@ p{margin:0}
 .a-stage.open .hot::after{animation:none}
 .pop-x.x{left:91.5%;top:1.5%;width:7%;height:7.5%}
 .pop-x.cancel{left:64%;top:86.5%;width:13.5%;height:10%}
-.hint{display:inline-flex;align-items:center;gap:10px;margin-top:18px;color:var(--ember);font-size:15px}
-.hint i{width:8px;height:8px;border-radius:50%;background:var(--ember);box-shadow:0 0 10px 2px var(--flame)}
-.hint{display:none}
-.a-stage.js~.hint{display:inline-flex}
 .a-stage.js{padding-bottom:4%}
 .a-stage.js .frame.pop{opacity:0;visibility:hidden;transform:translateY(18px) scale(.97);transition:opacity .35s,transform .35s,visibility 0s .35s}
 .a-stage.js.open .frame.pop{opacity:1;visibility:visible;transform:none;transition:opacity .35s,transform .35s}
@@ -301,7 +297,6 @@ body.editing [contenteditable="true"]{outline:1px dashed var(--faint);outline-of
     <div class="frame main"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><div class="shot-wrap"><img loading="lazy" class="shot" src="images/register-list.png" alt="星火计划平台“在此登记”页面，右上角的“登记种子”按钮已用红框标出"><button class="hot" type="button" aria-label="点击“登记种子”，打开登记弹窗" aria-expanded="false" hidden></button></div></div>
     <div class="frame pop" role="dialog" aria-label="登记种子弹窗示例"><div class="shot-wrap"><img loading="lazy" class="shot" src="images/register-dialog.png" alt="“登记种子”弹窗：确认本人信息并选择师傅"><button class="pop-x x" type="button" aria-label="关闭弹窗" hidden></button><button class="pop-x cancel" type="button" aria-label="取消" hidden></button></div></div>
   </div>
-  <p class="hint"><i></i>点一下截图里的“登记种子”试试</p>
   <div class="a-caps">
     <div class="cap"><span class="spark-no">1</span><div><h4>点右上角“登记种子”</h4><p>进入平台后，在“在此登记”页找到这个按钮。</p></div></div>
     <div class="cap"><span class="spark-no">2</span><div><h4>确认信息，选择师傅</h4><p>本人信息自动带出，选好带教你的师傅，点“登记”提交评审。</p></div></div>
@@ -524,9 +519,9 @@ document.getElementById('save').addEventListener('click',()=>{
 
 <script>
 (()=>{const st=document.querySelector('.a-stage');if(!st)return;
-const hot=st.querySelector('.hot'),hint=document.querySelector('.howto .hint');
+const hot=st.querySelector('.hot');
 st.classList.add('js');st.querySelectorAll('button').forEach(b=>b.hidden=false);
-const set=o=>{st.classList.toggle('open',o);hot.setAttribute('aria-expanded',String(o));hint.innerHTML=o?'<i></i>点 × 或“取消”可关闭，再点“登记种子”重看':'<i></i>点一下截图里的“登记种子”试试'};
+const set=o=>{st.classList.toggle('open',o);hot.setAttribute('aria-expanded',String(o))};
 hot.addEventListener('click',e=>{e.stopPropagation();set(!st.classList.contains('open'))});
 st.querySelectorAll('.pop-x').forEach(b=>b.addEventListener('click',()=>set(false)));
 st.addEventListener('click',e=>{if(st.classList.contains('open')&&!e.target.closest('.pop'))set(false)});
