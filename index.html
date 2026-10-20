@@ -77,6 +77,35 @@ p{margin:0}
 .quote{border-left:1px solid var(--ember);padding:6px 0 6px 24px;margin-top:40px;font-family:var(--serif);font-size:clamp(20px,2vw,24px);line-height:1.6;max-width:22em}
 .quote small{display:block;font-family:var(--sans);font-size:14px;color:var(--faint);margin-top:12px;letter-spacing:.1em}
 
+/* ---------- 01b register how-to ---------- */
+
+.howto{padding-block:20px 120px}
+.howto-head{max-width:640px}
+.howto-head h3{font-size:clamp(26px,3vw,36px)}
+.howto-head p{color:var(--muted);margin-top:10px}
+.shot{display:block;width:100%;height:auto;border-radius:10px}
+.frame{background:var(--night-2);border:1px solid var(--dust);border-radius:16px;padding:10px;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 60px rgba(255,140,50,.06)}
+.chrome{display:flex;gap:6px;padding:2px 4px 10px}
+.chrome i{width:9px;height:9px;border-radius:50%;background:var(--dust)}
+.chrome i:first-child{background:var(--flame)}
+.spark-no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ember);color:var(--night);font-family:var(--num);font-weight:700;font-size:15px;box-shadow:0 0 14px 2px rgba(255,123,58,.6);flex:none}
+.cap{display:flex;gap:14px;align-items:flex-start}
+.cap h4{margin:0;font-family:var(--serif);font-size:19px}
+.cap p{color:var(--muted);font-size:15px;margin-top:4px}
+
+/* A: overlapping windows */
+.a-stage{position:relative;margin-top:44px;padding-bottom:12%}
+.a-stage .frame.main{width:86%}
+.a-stage .frame.pop{position:absolute;right:0;bottom:0;width:40%;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 50px rgba(255,140,50,.22)}
+.a-caps{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px;max-width:860px}
+
+@media (max-width:900px){
+  .a-stage{padding-bottom:0}
+  .a-stage .frame.main{width:100%}
+  .a-stage .frame.pop{position:relative;width:78%;margin:-14% 0 0 auto}
+  .a-caps{grid-template-columns:1fr}
+}
+
 /* ---------- 02 fission (scrollytelling) ---------- */
 .fission-head{max-width:760px}
 .story{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);margin-top:40px}
@@ -245,6 +274,18 @@ body.editing [contenteditable="true"]{outline:1px dashed var(--faint);outline-of
       </ol>
     </div>
   </section>
+
+<section class="wrap howto" id="register" aria-label="登记步骤">
+  <div class="howto-head"><h3>登记只需两步</h3><p>打开星火计划平台，在“在此登记”页完成。</p></div>
+  <div class="a-stage">
+    <div class="frame main"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><img loading="lazy" class="shot" src="images/register-list.png" alt="星火计划平台“在此登记”页面，右上角的“登记种子”按钮已用红框标出"></div>
+    <div class="frame pop"><img loading="lazy" class="shot" src="images/register-dialog.png" alt="“登记种子”弹窗：确认本人信息并选择师傅"></div>
+  </div>
+  <div class="a-caps">
+    <div class="cap"><span class="spark-no">1</span><div><h4>点右上角“登记种子”</h4><p>进入平台后，在“在此登记”页找到这个按钮。</p></div></div>
+    <div class="cap"><span class="spark-no">2</span><div><h4>确认信息，选择师傅</h4><p>本人信息自动带出，选好带教你的师傅，点“登记”提交评审。</p></div></div>
+  </div>
+</section>
 
   <section class="wrap chapter" id="fission" data-scene="fission">
     <div class="fission-head">
