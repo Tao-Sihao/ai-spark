@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI 星火计划</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one night sky behind everything (sticky canvas); chapters scroll over it like a fuse burning top to bottom. */
+:root{
+  --night:#0a0f1e; --night-2:#111a31; --dust:#1d2843;
+  --ink:#f3eee4; --muted:#9ea8bd; --faint:#5f6a83;
+  --ember:#ffb54a; --flame:#ff7b3a; --glow:rgba(255,170,70,.18);
+  --serif:"Songti SC","STSong","Noto Serif SC","Noto Serif CJK SC","Source Han Serif SC","SimSun",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC","Hiragino Sans GB",system-ui,sans-serif;
+  --num:"DIN Alternate","Bahnschrift","Avenir Next Condensed","Roboto Condensed","Arial Narrow",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--night)}
+body{margin:0;background:var(--night);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:4px}
+
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 120%,rgba(255,123,58,.10),transparent 60%)}
+
+/* ---------- top bar with a burning fuse ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:linear-gradient(var(--night),rgba(10,15,30,.72));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.bar-in{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{font-family:var(--serif);font-weight:900;font-size:19px;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--ember);font-weight:900}
+.chapters{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chapters a{font-size:14px;color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:99px;letter-spacing:.06em;transition:color .3s,background .3s}
+.chapters a[aria-current]{color:var(--night);background:var(--ember)}
+.fuse{position:relative;height:2px;background:var(--dust)}
+.fuse i{position:absolute;inset:0 auto 0 0;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--flame),var(--ember))}
+.fuse b{position:absolute;top:50%;left:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fff6dc;box-shadow:0 0 6px 2px var(--ember),0 0 18px 6px var(--flame)}
+
+/* ---------- shared ---------- */
+main{position:relative;z-index:1}
+.wrap{max-width:1180px;margin:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.chapter{padding-block:clamp(90px,14vh,160px)}
+.kicker{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.32em;color:var(--ember);margin:0 0 22px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--ember)}
+h1,h2,h3{font-family:var(--serif);font-weight:900;text-wrap:balance;margin:0}
+h2{font-size:clamp(34px,5vw,60px);line-height:1.18;letter-spacing:.02em}
+h2 em,h1 em{font-style:normal;color:var(--ember);text-shadow:0 0 28px rgba(255,150,60,.55)}
+.lede{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:34em;margin:24px 0 0}
+p{margin:0}
+
+/* ---------- hero ---------- */
+.hero{min-height:min(86vh,820px);display:flex;flex-direction:column;justify-content:center;padding-block:60px 90px}
+.hero .eyebrow{font-size:14px;letter-spacing:.4em;color:var(--muted);margin-bottom:26px}
+.hero h1{font-size:clamp(58px,10vw,138px);line-height:1.02;letter-spacing:.04em}
+.hero h1 em{display:inline-block;animation:flicker 4.2s infinite}
+.hero .tag{font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);margin-top:28px;max-width:20em}
+.hero .tag span{color:var(--ember)}
+.hero .sub{color:var(--muted);margin-top:14px;max-width:30em}
+.cue{margin-top:56px;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--faint);letter-spacing:.2em}
+.cue i{width:1px;height:46px;background:linear-gradient(var(--ember),transparent);animation:drip 2.4s infinite}
+@keyframes flicker{0%,100%{opacity:1}46%{opacity:1}48%{opacity:.78}50%{opacity:1}72%{opacity:.9}}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- 01 ignite ---------- */
+.ignite-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,110px);align-items:start;margin-top:12px}
+.ignite-grid>*{min-width:0}
+.passing{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s;position:relative}
+.passing::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;width:1px;background:linear-gradient(var(--ember),var(--dust))}
+.passing li{position:relative;padding:0 0 30px 52px;counter-increment:s}
+.passing li::before{content:"";position:absolute;left:5px;top:9px;width:13px;height:13px;border-radius:50%;background:var(--night);border:1.5px solid var(--ember)}
+.passing li:first-child::before{background:var(--ember);box-shadow:0 0 14px 3px var(--flame)}
+.passing h3{font-size:22px;letter-spacing:.04em;display:flex;align-items:baseline;gap:12px}
+.passing h3::before{content:counter(s,decimal-leading-zero);font-family:var(--num);font-size:14px;color:var(--ember);letter-spacing:.1em;font-weight:500}
+.passing p{color:var(--muted);margin-top:6px}
+.quote{border-left:1px solid var(--ember);padding:6px 0 6px 24px;margin-top:40px;font-family:var(--serif);font-size:clamp(20px,2vw,24px);line-height:1.6;max-width:22em}
+.quote small{display:block;font-family:var(--sans);font-size:14px;color:var(--faint);margin-top:12px;letter-spacing:.1em}
+
+/* ---------- 02 fission (scrollytelling) ---------- */
+.fission-head{max-width:760px}
+.story{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);margin-top:40px}
+.steps{display:grid}
+.step{min-height:62vh;display:flex;align-items:center}
+.step:last-child{min-height:50vh}
+.step-card{border-left:1px solid var(--dust);padding:8px 0 8px 24px;transition:border-color .4s,opacity .4s;opacity:.38}
+.step.on .step-card{opacity:1;border-color:var(--ember)}
+.step-card b{font-family:var(--num);color:var(--ember);font-size:14px;letter-spacing:.2em;font-weight:500}
+.step-card h3{font-size:clamp(22px,2.2vw,28px);margin:8px 0 8px}
+.step-card p{color:var(--muted)}
+.figure{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px);align-self:start;padding-block:10px}
+.tally{display:flex;gap:28px;align-items:flex-end;margin-bottom:8px}
+.tally div{display:grid}
+.tally strong{font-family:var(--num);font-size:clamp(38px,4vw,54px);line-height:1;color:var(--ember);font-variant-numeric:tabular-nums;font-weight:600}
+.tally span{font-size:13px;color:var(--muted);letter-spacing:.12em;margin-top:6px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:14px 0 6px}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.legend .m{background:var(--ember);box-shadow:0 0 8px var(--flame)}
+.legend .l{border:1.5px solid var(--ember)}
+.fission-svg{width:100%;height:auto;display:block;overflow:visible}
+.tree-edge{fill:none;stroke:var(--ember);stroke-width:2;stroke-dasharray:4 6;opacity:0;transition:opacity .7s}
+.tree-edge.shown{opacity:.6;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.tree-node{opacity:0;transition:opacity .7s}
+.tree-node.shown{opacity:1}
+.tree-node circle{transform:scale(1.15);fill:var(--night-2);stroke:var(--ember);stroke-width:2;transition:fill .7s,filter .7s}
+.tree-node .node-name{font-size:20px;fill:var(--ink);text-anchor:middle;font-weight:600;font-family:var(--sans)}
+.tree-node .node-role{font-size:17px;fill:var(--muted);text-anchor:middle;font-family:var(--sans)}
+.tree-node.qualified circle{fill:var(--ember);filter:drop-shadow(0 0 10px var(--flame))}
+.tree-node.qualified .node-name{fill:var(--night)}
+.note{font-size:13px;color:var(--faint);margin-top:14px;max-width:46em;line-height:1.7}
+.relay{margin-top:30px;font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);max-width:24em;line-height:1.5}
+
+/* ---------- 03 group ---------- */
+.group-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--dust);border:1px solid var(--dust);margin-top:54px}
+.trait{background:rgba(10,15,30,.86);padding:28px 24px}
+.trait h3{font-size:22px;letter-spacing:.06em}
+.trait p{color:var(--muted);margin-top:8px;font-size:16px}
+.navigators{display:flex;align-items:center;gap:22px;margin-top:56px;flex-wrap:wrap}
+.navigators strong{font-family:var(--num);font-size:clamp(64px,8vw,104px);line-height:.9;color:var(--ember);text-shadow:0 0 30px rgba(255,140,50,.5);font-weight:600}
+.navigators p{max-width:30em;color:var(--muted)}
+.navigators p b{color:var(--ink);font-weight:600}
+.mag-head{margin-top:90px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.mag-head h3{font-size:clamp(26px,3vw,36px)}
+.mag-head p{color:var(--muted);font-size:15px}
+.mags{list-style:none;margin:26px 0 0;padding:0;display:grid}
+.mag{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start;padding:24px 0;border-top:1px solid var(--dust)}
+.mag:last-child{border-bottom:1px solid var(--dust)}
+.star{display:flex;align-items:center;gap:14px}
+.star i{flex:none;border-radius:50%;background:#fff3d6;box-shadow:0 0 calc(var(--s)*1.2) calc(var(--s)*.35) var(--ember),0 0 calc(var(--s)*3) calc(var(--s)*.6) var(--glow);width:var(--s);height:var(--s)}
+.star span{font-family:var(--num);font-size:30px;font-weight:600;color:var(--ink)}
+.mag h4{margin:0;font-family:var(--serif);font-size:21px}
+.mag h4 small{font-family:var(--num);font-size:14px;color:var(--ember);margin-left:10px;font-weight:500;letter-spacing:.08em}
+.mag p{color:var(--muted);font-size:15.5px;margin-top:6px}
+.mag .out{font-size:14.5px;color:var(--muted)}
+.mag .out b{display:block;font-size:12px;letter-spacing:.24em;color:var(--faint);font-weight:500;margin-bottom:4px}
+
+/* ---------- 04 reward ---------- */
+.reward{padding-bottom:60px}
+.bounty{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:var(--dust);border:1px solid var(--dust);margin-top:54px}
+.bounty>div{background:rgba(10,15,30,.86);padding:clamp(28px,4vw,48px)}
+.bounty .big{font-family:var(--num);font-weight:600;line-height:.95;color:var(--ember);font-size:clamp(84px,12vw,168px);text-shadow:0 0 40px rgba(255,130,50,.45);font-variant-numeric:tabular-nums}
+.bounty .big small{font-family:var(--serif);font-size:.26em;color:var(--ink);margin-left:10px;text-shadow:none}
+.bounty .mid{font-family:var(--num);font-weight:600;line-height:1;color:var(--ember);font-size:clamp(54px,7vw,92px)}
+.bounty .mid small{font-family:var(--serif);font-size:.34em;color:var(--ink);margin:0 6px}
+.bounty h3{font-size:22px;margin-top:24px}
+.bounty p{color:var(--muted);margin-top:8px;max-width:28em}
+.show{margin-top:70px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.show div{border-top:1px solid var(--ember);padding-top:14px}
+.show h4{margin:0;font-family:var(--serif);font-size:19px}
+.show p{color:var(--muted);font-size:15px;margin-top:4px}
+.cta{margin-top:90px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
+.cta h2{font-size:clamp(34px,4.6vw,56px)}
+.join{display:inline-flex;align-items:center;gap:14px;margin-top:30px;padding:18px 34px;border-radius:99px;background:linear-gradient(100deg,var(--flame),var(--ember));color:var(--night);font-weight:700;font-size:19px;text-decoration:none;letter-spacing:.06em;box-shadow:0 0 0 0 rgba(255,140,50,.5);animation:pulse 2.6s infinite}
+.join:hover{filter:brightness(1.08)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,140,50,.45)}70%{box-shadow:0 0 0 18px rgba(255,140,50,0)}100%{box-shadow:0 0 0 0 rgba(255,140,50,0)}}
+.login{font-size:14px;color:var(--faint);margin-top:14px}
+.contacts{display:grid;gap:18px}
+.contacts div{border-left:1px solid var(--dust);padding-left:18px}
+.contacts b{font-family:var(--serif);font-size:20px}
+.contacts p{color:var(--muted);font-size:15px}
+footer{position:relative;z-index:1;border-top:1px solid var(--dust);color:var(--faint);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:26px}
+
+/* ---------- edit toolbox ---------- */
+.tools{position:fixed;z-index:6;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));font-size:13px}
+.tools summary{list-style:none;cursor:pointer;padding:8px 14px;border-radius:99px;background:var(--night-2);border:1px solid var(--dust);color:var(--muted)}
+.tools summary::-webkit-details-marker{display:none}
+.tools[open] summary{color:var(--ink)}
+.tools div{position:absolute;right:0;bottom:46px;display:grid;gap:8px;width:220px;padding:14px;border-radius:12px;background:var(--night-2);border:1px solid var(--dust)}
+.tools button{font:inherit;color:var(--ink);background:var(--dust);border:0;border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
+.tools button[aria-pressed="true"]{background:var(--ember);color:var(--night)}
+.tools output{color:var(--muted);font-size:12px;line-height:1.5}
+body.editing [contenteditable="true"]{outline:1px dashed var(--faint);outline-offset:3px}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .ignite-grid,.cta,.bounty{grid-template-columns:1fr}
+  .group-grid,.show{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mag{grid-template-columns:72px minmax(0,1fr)}
+  .mag .out{grid-column:2}
+  .star span{font-size:22px}
+  .story{grid-template-columns:1fr;gap:0}
+  .figure{order:-1;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:2;background:linear-gradient(var(--night) 86%,transparent);padding-top:16px;padding-bottom:22px;margin-inline:-16px;padding-inline:16px}
+  .tally{gap:20px}
+  .legend{display:none}
+  .tree-node .node-role{display:none}
+  .tree-node .node-name{font-size:28px}
+  .step{min-height:46vh}
+  .step-card{background:rgba(10,15,30,.7)}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .chapters a{padding:3px 7px;font-size:13px}
+  .brand{font-size:16px}
+  .group-grid{grid-template-columns:1fr}
+  .show{grid-template-columns:1fr}
+  .tree-node .node-name{font-size:30px}
+}
+@media (max-width:420px){.chapters a:not([aria-current]){display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top">AI <b>星火</b>计划</a>
+    <nav class="chapters" aria-label="章节">
+      <a href="#ignite">传火</a><a href="#fission">裂变</a><a href="#group">星群</a><a href="#reward">赏金</a>
+    </nav>
+  </div>
+  <div class="fuse" aria-hidden="true"><i></i><b></b></div>
+</header>
+
+<main>
+  <section class="wrap hero" id="top" data-scene="spark">
+    <p class="eyebrow">AI FIRST · 全员共学</p>
+    <h1>AI <em>星火</em><br>计划</h1>
+    <p class="tag">学 AI，赚赏金。<br>让一个人的经验，<span>成为更多人的能力。</span></p>
+    <p class="sub">面向全公司所有对 AI 感兴趣的同事。不限部门，不限基础，带上一个工作里的真实问题就能开始。</p>
+    <div class="cue" aria-hidden="true"><i></i>向下滚动，看一粒火种怎样燎原</div>
+  </section>
+
+  <section class="wrap chapter" id="ignite" data-scene="ignite">
+    <p class="kicker">第一章 · 传火</p>
+    <h2>火种从来不是凭空出现的，<br>它从<em>身边的人</em>手里传过来。</h2>
+    <div class="ignite-grid">
+      <div>
+        <p class="lede">公司里已经有一批同事，把 AI 用进了自己的日常工作。找到其中一位，带上你手头的一个真实问题，一起把它解决。这就是被点燃的那一刻。</p>
+        <p class="quote">会用的人带一把，<br>想学的人少走很多弯路。<small>点燃之后，你也会成为下一个传火的人</small></p>
+      </div>
+      <ol class="passing">
+        <li><h3>找到点火人</h3><p>从已具备带教资格的同事中，选一位作为你的师傅。</p></li>
+        <li><h3>从一个真实问题开始</h3><p>整理资料、分析数据、写报告、把重复操作自动化，从你岗位上的一件事入手。</p></li>
+        <li><h3>登记成果，成为“种子”</h3><p>达到岗位所需的 AI 能力要求后，在星火计划平台登记，等待评审。</p></li>
+        <li><h3>展示你的实践</h3><p>分享真实的 AI 使用记录，或演示自己搭建的业务应用，由 AI First 小组评审认定。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap chapter" id="fission" data-scene="fission">
+    <div class="fission-head">
+      <p class="kicker">第二章 · 裂变</p>
+      <h2>一颗星火，<br>带出<em>一片星光</em>。</h2>
+      <p class="lede">通过评审的“种子”，就获得带教资格。被点燃的人再去点燃别人，火光一层一层往外传。</p>
+    </div>
+    <div class="story">
+      <div class="steps">
+        <div class="step" data-step="0"><div class="step-card"><b>1 / 6</b><h3>一位领航员，带着经验出发</h3><p>初始认定的星火领航员，是第一批火种。</p></div></div>
+        <div class="step" data-step="1"><div class="step-card"><b>2 / 6</b><h3>点燃身边的两位同事</h3><p>领航员带着同事 A、B，一起解决真实的工作问题。</p></div></div>
+        <div class="step" data-step="2"><div class="step-card"><b>3 / 6</b><h3>种子通过评审，成为新的火种</h3><p>A、B 展示实践成果，通过 AI First 小组评审，获得带教资格。</p></div></div>
+        <div class="step" data-step="3"><div class="step-card"><b>4 / 6</b><h3>新师傅接过火把</h3><p>A、B 各自带教下一批同事，经验沿着带教关系继续传递。</p></div></div>
+        <div class="step" data-step="4"><div class="step-card"><b>5 / 6</b><h3>更多人获得带教资格</h3><p>下一批同事也通过评审，点火的人越来越多。</p></div></div>
+        <div class="step" data-step="5"><div class="step-card"><b>6 / 6</b><h3>星火燎原</h3><p>每一颗通过评审的种子，都能带出新的种子。学习网络就这样一层层展开。</p></div></div>
+      </div>
+      <figure class="figure" aria-label="星火带教裂变关系图">
+        <div class="tally" aria-live="polite">
+          <div><strong id="lit">15</strong><span>已被点燃</span></div>
+          <div><strong id="carriers">7</strong><span>可以传火</span></div>
+        </div>
+        <div class="legend"><span><i class="m"></i>已具备师傅资格</span><span><i class="l"></i>正在学习实践</span><span>虚线代表直接带教关系</span></div>
+        <svg class="fission-svg" viewBox="0 0 1200 590" role="img" aria-labelledby="tree-title tree-desc"><title id="tree-title">星火带教裂变关系图</title><desc id="tree-desc">一位领航员带教两位同事，通过评审的同事再分别带教下一层，逐层形成带教网络。虚拟机制示意。</desc><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 300.0 V 183"/><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 900.0 V 183"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 150.0 V 333"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 450.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 750.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 1050.0 V 333"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 75.0 V 483"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 225.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 375.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 525.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 675.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 825.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 975.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 1125.0 V 483"/><g class="tree-node" data-generation="0" transform="translate(600.0,65)"><circle r="31"/><text class="node-name" y="6">领航</text><text class="node-role" y="59">星火领航员</text></g><g class="tree-node" data-generation="1" transform="translate(300.0,215)"><circle r="31"/><text class="node-name" y="6">A</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="1" transform="translate(900.0,215)"><circle r="31"/><text class="node-name" y="6">B</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(150.0,365)"><circle r="31"/><text class="node-name" y="6">A1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(450.0,365)"><circle r="31"/><text class="node-name" y="6">A2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(750.0,365)"><circle r="31"/><text class="node-name" y="6">B1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(1050.0,365)"><circle r="31"/><text class="node-name" y="6">B2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(75.0,515)"><circle r="31"/><text class="node-name" y="6">A1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(225.0,515)"><circle r="31"/><text class="node-name" y="6">A1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(375.0,515)"><circle r="31"/><text class="node-name" y="6">A2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(525.0,515)"><circle r="31"/><text class="node-name" y="6">A2-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(675.0,515)"><circle r="31"/><text class="node-name" y="6">B1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(825.0,515)"><circle r="31"/><text class="node-name" y="6">B1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(975.0,515)"><circle r="31"/><text class="node-name" y="6">B2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(1125.0,515)"><circle r="31"/><text class="node-name" y="6">B2-2</text><text class="node-role" y="59">待展开</text></g></svg>
+      </figure>
+    </div>
+    <p class="relay">学会的人成为新的师傅，新的师傅再带出下一批同事。</p>
+    <p class="note">裂变机制示意，节点均为虚拟角色。每人带教两人仅为演示，不代表实际人数、固定比例或增长承诺；学习者须通过评审后才能成为师傅。</p>
+  </section>
+
+  <section class="wrap chapter" id="group" data-scene="group">
+    <p class="kicker">第三章 · 星群</p>
+    <h2>火光连在一起，<br>就是公司的 <em>AI 学习小组</em>。</h2>
+    <p class="lede">星火计划会在公司里形成一个持续成长的 AI 学习小组。遇到问题有人交流，有效的方法大家共享，一个人的摸索变成所有人的捷径。</p>
+    <div class="group-grid">
+      <div class="trait"><h3>全员参与</h3><p>不限部门，围绕各自岗位的需求学习。</p></div>
+      <div class="trait"><h3>实战学习</h3><p>用真实工作记录和应用演示展示成果。</p></div>
+      <div class="trait"><h3>接力成长</h3><p>学会、通过评审，再带更多同事学。</p></div>
+      <div class="trait"><h3>经验共享</h3><p>有效的方法被更多同事借鉴和复用。</p></div>
+    </div>
+    <div class="navigators">
+      <strong>26</strong>
+      <p><b>位星火领航员已经点亮。</b>他们是初始认定的带教人，名单可在星火计划平台查看。还有很多没被发现的领航员：如果你已经具备 AI 实践和带教能力，或知道合适的同事，欢迎推荐。</p>
+    </div>
+    <div class="mag-head">
+      <h3>在星群里，你会越来越亮</h3>
+      <p>AI First 小组评审定级依据，L1 到 L5 逐级提升</p>
+    </div>
+    <ol class="mags">
+      <li class="mag"><div class="star" style="--s:6px"><i></i><span>L1</span></div><div><h4>AI 任务执行者<small>20 分</small></h4><p>能独立完成标准 AI 任务，把会议、文档、表格、流程和汇报材料转化为稳定产出；能使用飞书 AI 和至少 2 个外部 AI 工具。</p></div><p class="out"><b>典型交付物</b>流程梳理、数据分析、PPT 初稿、岗位提示词</p></li>
+      <li class="mag"><div class="star" style="--s:9px"><i></i><span>L2</span></div><div><h4>AI 场景实践者<small>40 分</small></h4><p>能围绕本岗位拆出高频场景，设计提示词模板、SOP 和轻量工作流；能判断哪些任务适合 AI，哪些不适合。</p></div><p class="out"><b>典型交付物</b>岗位 AI 工作流、提示词模板库、部门案例包</p></li>
+      <li class="mag"><div class="star" style="--s:12px"><i></i><span>L3</span></div><div><h4>AI 应用搭建者<small>60 分</small></h4><p>能用低代码、无代码、智能体或脚本工具搭建可复用应用，处理简单数据输入输出、权限边界、用户反馈和版本迭代。</p></div><p class="out"><b>典型交付物</b>轻量智能体、自动化流程、部门知识助手、数据分析助手</p></li>
+      <li class="mag"><div class="star" style="--s:15px"><i></i><span>L4</span></div><div><h4>AI 业务交付者<small>80 分</small></h4><p>接近 AI BP/FDE 角色，能深入业务现场，识别场景、测算 ROI、协调业务／IT／数据资源，推动真实流程从痛点到试点上线。</p></div><p class="out"><b>典型交付物</b>端到端试点方案、ROI 测算、流程改造 MVP、上线复盘报告</p></li>
+      <li class="mag"><div class="star" style="--s:18px"><i></i><span>L5</span></div><div><h4>AI 全栈构建者<small>100 分</small></h4><p>具备业务理解、产品设计、数据治理、模型调用、系统集成和安全合规的综合能力，能推动跨系统 AI 应用落地。</p></div><p class="out"><b>典型交付物</b>跨系统 AI 应用、企业级智能体、ERP／CRM／流程系统集成方案</p></li>
+    </ol>
+    <p class="note">以上为能力等级评分，奖励积分另按活动规则计算。等级要求以平台“等级标准”为准。</p>
+  </section>
+
+  <section class="wrap chapter reward" id="reward" data-scene="reward">
+    <p class="kicker">第四章 · 赏金</p>
+    <h2>传出去的每一把火，<br>都有<em>回报</em>。</h2>
+    <div class="bounty">
+      <div>
+        <p class="big">100<small>元 / 人</small></p>
+        <h3>带教奖励</h3>
+        <p>每成功带教一名同事达到岗位要求并通过评审，师傅获得 100 元奖励。带得越多，拿得越多。</p>
+      </div>
+      <div>
+        <p class="mid">1<small>积分 =</small>1<small>元</small></p>
+        <h3>分享积分</h3>
+        <p>在平台发布 AI 学习或应用场景，可获得相应积分。分享越多，收获越多。</p>
+      </div>
+    </div>
+    <div class="show">
+      <div><h4>更快整理资料</h4><p>用 AI 归纳文档、会议和信息。</p></div>
+      <div><h4>分析数据</h4><p>让表格和数据更快出结论。</p></div>
+      <div><h4>撰写报告</h4><p>从初稿到成稿，省下反复打磨的时间。</p></div>
+      <div><h4>自动化与小应用</h4><p>把重复操作变成流程，搭一个解决实际问题的工具。</p></div>
+    </div>
+    <div class="cta">
+      <div>
+        <h2>你的火种，<br>从<em>今天</em>开始。</h2>
+        <a class="join" href="https://alphaess.feishuapp.com/app/app_17er9ahsqsg" target="_blank" rel="noopener noreferrer">进入星火计划平台登记 ↗</a>
+        <p class="login">请使用公司飞书账号登录。想学习，带着一个工作问题开始；有经验，欢迎推荐自己成为师傅。</p>
+      </div>
+      <div class="contacts">
+        <div><b>袁齐能</b><p>活动规则、参与咨询、评审时间与参会安排</p></div>
+        <div><b>吴佳吟</b><p>奖金发放、教练名单补充</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>AI 星火计划 · AI First 小组</span><span>让 AI 成为更多岗位的日常能力</span></div></footer>
+
+<details class="tools">
+  <summary>编辑 / 下载</summary>
+  <div>
+    <button id="edit" type="button" aria-pressed="false">编辑文字</button>
+    <button id="save" type="button">下载 HTML</button>
+    <output id="edit-status">点击“编辑文字”可直接修改页面内容</output>
+  </div>
+</details>
+
+<script>
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- night sky ---------- */
+const cv=document.getElementById('sky'),cx=cv.getContext('2d');
+let W=0,H=0,DPR=1,scene='spark',t=0;
+const N=90,P=[];
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+for(let i=0;i<N;i++)P.push({x:0,y:0,a:0,r:1,rx:rnd(),ry:rnd(),sp:.4+rnd()*.9,ph:rnd()*6.28});
+let stars=[],links=[];
+function layout(){
+  DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;
+  cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);
+  const wide=W>900;seed=11;stars=[];
+  for(let i=0;i<26;i++)stars.push({x:(wide?.52+rnd()*.43:.06+rnd()*.88)*W,y:(.16+rnd()*.72)*H});
+  links=[];stars.forEach((s,i)=>{const d=stars.map((o,j)=>[j,Math.hypot(o.x-s.x,o.y-s.y)]).filter(e=>e[0]!==i).sort((a,b)=>a[1]-b[1]);
+    for(const [j] of d.slice(0,2)){const k=i<j?i+'-'+j:j+'-'+i;if(!links.includes(k))links.push(k)}});
+  links=links.map(k=>k.split('-').map(Number));
+  if(!P[0].x)P.forEach(p=>{p.x=p.rx*W;p.y=p.ry*H});
+}
+function target(p,i){
+  const wide=W>900,cx0=wide?W*.74:W*.72,cy0=H*.46;
+  switch(scene){
+    case 'spark':{
+      if(i===0)return[cx0,cy0,1,4.5];
+      const life=((t*.004*p.sp+p.ph)%1),ang=p.ph*3;
+      if(i<34)return[cx0+Math.sin(ang+t*.01)*18*life+(p.rx-.5)*30*life,cy0-life*H*.32,(1-life)*.9,1.6*(1-life)+.3];
+      return[p.rx*W,p.ry*H,.16,.8];}
+    case 'ignite':{
+      const a=[wide?W*.62:W*.3,H*.38],b=[wide?W*.84:W*.75,H*.62];
+      if(i===0)return[...a,1,4.5];
+      if(i===1){const k=Math.min(1,(Math.sin(t*.02)+1)/2*1.4);return[...b,.35+.65*k,2+2.5*k];}
+      if(i<30){const k=((t*.005*p.sp+p.ph)%1);return[a[0]+(b[0]-a[0])*k+Math.sin(k*9+p.ph)*10,a[1]+(b[1]-a[1])*k+Math.cos(k*7+p.ph)*10,Math.sin(k*3.14)*.85,1.4];}
+      return[p.rx*W,p.ry*H,.14,.8];}
+    case 'fission':return[p.rx*W,p.ry*H,.12+.08*Math.sin(t*.02+p.ph),.8];
+    case 'group':{
+      if(i<26){const s=stars[i];return[s.x,s.y,.75+.25*Math.sin(t*.03+p.ph),2.6];}
+      return[p.rx*W,p.ry*H,.22+.1*Math.sin(t*.02+p.ph),.9];}
+    case 'reward':{
+      const life=((t*.0025*p.sp+p.ph)%1);
+      return[p.rx*W+Math.sin(life*8+p.ph)*24,H*(1.05-life*1.15),Math.sin(life*3.14)*.9,1+p.sp*1.6];}
+  }
+}
+let linkA=0;
+function frame(){
+  t+=reduce?0:1;
+  cx.clearRect(0,0,W,H);
+  linkA+=((scene==='group'?1:0)-linkA)*.05;
+  if(linkA>.01){cx.strokeStyle='rgba(255,181,74,'+(.28*linkA)+')';cx.lineWidth=1;cx.beginPath();
+    for(const [a,b] of links){cx.moveTo(P[a].x,P[a].y);cx.lineTo(P[b].x,P[b].y)}cx.stroke();}
+  if(scene==='ignite'){cx.strokeStyle='rgba(255,181,74,.18)';cx.setLineDash([3,7]);cx.beginPath();cx.moveTo(P[0].x,P[0].y);cx.lineTo(P[1].x,P[1].y);cx.stroke();cx.setLineDash([]);}
+  cx.globalCompositeOperation='lighter';
+  P.forEach((p,i)=>{const [tx,ty,ta,tr]=target(p,i);const k=reduce?1:(scene==='reward'||scene==='spark')&&i>1?.18:.06;
+    p.x+=(tx-p.x)*k;p.y+=(ty-p.y)*k;p.a+=(ta-p.a)*.08;p.r+=(tr-p.r)*.08;if(reduce){p.a=ta;p.r=tr}
+    if(p.a<.02)return;
+    const g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5);
+    g.addColorStop(0,'rgba(255,214,150,'+p.a*.55+')');g.addColorStop(1,'rgba(255,110,40,0)');
+    cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r*5,0,6.283);cx.fill();
+    cx.fillStyle='rgba(255,246,222,'+p.a+')';cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();});
+  cx.globalCompositeOperation='source-over';
+  if(!reduce)requestAnimationFrame(frame);
+}
+addEventListener('resize',()=>{layout();if(reduce)frame()});
+layout();frame();
+
+/* ---------- chapters drive the sky ---------- */
+const navLinks=[...document.querySelectorAll('.chapters a')];
+const io=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting)continue;scene=e.target.dataset.scene;
+  navLinks.forEach(a=>a.hash==='#'+e.target.id?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
+  if(reduce)frame();}},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('[data-scene]').forEach(s=>io.observe(s));
+
+/* ---------- fuse progress ---------- */
+const fuse=document.querySelector('.fuse i'),head=document.querySelector('.fuse b');let q=false;
+function prog(){const m=document.documentElement.scrollHeight-innerHeight,r=m>0?Math.min(1,scrollY/m):0;fuse.style.transform='scaleX('+r+')';head.style.left=(r*100)+'%';q=false}
+addEventListener('scroll',()=>{if(!q){q=true;requestAnimationFrame(prog)}},{passive:true});prog();
+
+/* ---------- fission steps ---------- */
+const states=[{v:0,q:0},{v:1,q:0},{v:1,q:1},{v:2,q:1},{v:2,q:2},{v:3,q:2}];
+const lit=document.getElementById('lit'),car=document.getElementById('carriers');
+function showTree(n){const s=states[n];
+  document.querySelectorAll('.tree-node').forEach(el=>{const g=+el.dataset.generation;el.classList.toggle('shown',g<=s.v);el.classList.toggle('qualified',g<=s.q);
+    el.querySelector('.node-role').textContent=g===0?'星火领航员':g<=s.q?'通过评审 · 新师傅':'学习实践中'});
+  document.querySelectorAll('.tree-edge').forEach(el=>el.classList.toggle('shown',+el.dataset.generation<=s.v));
+  lit.textContent=2**(s.v+1)-1;car.textContent=2**(s.q+1)-1;
+  document.querySelectorAll('.step').forEach(el=>el.classList.toggle('on',+el.dataset.step===n));}
+const so=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting)showTree(+e.target.dataset.step)},{rootMargin:'-40% 0px -45% 0px'});
+document.querySelectorAll('.step').forEach(s=>so.observe(s));
+/* Fully lit until the reader reaches the story, so the figure is complete at rest. */
+showTree(5);document.querySelectorAll('.step').forEach(el=>el.classList.remove('on'));
+
+/* ---------- edit & download ---------- */
+const editBtn=document.getElementById('edit'),status=document.getElementById('edit-status');
+const editable=[...document.querySelectorAll('main h1,main h2,main h3,main h4,main p,.contacts b,footer span')];
+let editing=false;
+editBtn.addEventListener('click',()=>{editing=!editing;document.body.classList.toggle('editing',editing);
+  editable.forEach(el=>{el.contentEditable=String(editing);el.spellcheck=false});
+  editBtn.textContent=editing?'完成编辑':'编辑文字';editBtn.setAttribute('aria-pressed',String(editing));
+  status.textContent=editing?'点击虚线框修改文字，改完请下载 HTML 保存':'点击“编辑文字”可直接修改页面内容';});
+document.querySelector('main').addEventListener('paste',e=>{if(!editing)return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))});
+document.querySelector('main').addEventListener('click',e=>{if(editing&&e.target.closest('a'))e.preventDefault()});
+document.getElementById('save').addEventListener('click',()=>{
+  const c=document.documentElement.cloneNode(true);c.querySelector('body').classList.remove('editing');
+  c.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+  const b=c.querySelector('#edit');b.textContent='编辑文字';b.setAttribute('aria-pressed','false');
+  const url=URL.createObjectURL(new Blob(['<!doctype html>\n'+c.outerHTML],{type:'text/html;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download='AI星火计划.html';document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);status.textContent='已发起下载。在预览环境中下载可能被拦截，请在正式页面操作';});
+})();
+</script>
+</body>
+</html>
