@@ -1,10 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <title>AI 星火计划</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta content="cover" name="claude:viewport-fit-sides"/>
 <style>
 /* Layout: one night sky behind everything (sticky canvas); chapters scroll over it like a fuse burning top to bottom. */
 :root{
@@ -122,6 +123,19 @@ p{margin:0}
   .a-stage.js.open .frame.pop{transform:translate(-50%,-50%)}
   .a-stage.js.open::before{content:"";position:fixed;inset:0;background:rgba(5,8,16,.72);z-index:19}
 }
+.lang{font:600 13px/1 var(--sans);letter-spacing:.08em;color:var(--ember);background:transparent;border:1px solid var(--ember);border-radius:99px;padding:6px 11px;cursor:pointer;flex:none}
+.lang:hover{background:var(--ember);color:var(--night)}
+.bar-in{flex-wrap:nowrap}
+.chapters{margin-left:auto}
+html[lang="en"]{--serif:Georgia,"Times New Roman","Songti SC","STSong",serif}
+html[lang="en"] .hero h1{letter-spacing:0;font-size:clamp(54px,9vw,124px)}
+html[lang="en"] h2{letter-spacing:0}
+html[lang="en"] .kicker{letter-spacing:.18em}
+html[lang="en"] .hero .eyebrow{letter-spacing:.24em}
+html[lang="en"] .navigators{align-items:flex-start}
+html[lang="en"] h3,html[lang="en"] h4{letter-spacing:0}
+html[lang="en"] .step-card h3,html[lang="en"] .passing h3,html[lang="en"] .mag-head h3{line-height:1.3}
+.bounty .big small,.bounty .mid small{white-space:nowrap}
 /* ---------- 02 fission (scrollytelling) ---------- */
 .fission-head{max-width:760px}
 .story{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);margin-top:40px}
@@ -251,160 +265,149 @@ body.editing [contenteditable="true"]{outline:1px dashed var(--faint);outline-of
 </style>
 </head>
 <body>
-
-<canvas id="sky" aria-hidden="true"></canvas>
-<div class="veil" aria-hidden="true"></div>
-
+<canvas aria-hidden="true" id="sky"></canvas>
+<div aria-hidden="true" class="veil"></div>
 <header class="bar">
-  <div class="bar-in">
-    <a class="brand" href="#top">AI <b>星火</b>计划</a>
-    <nav class="chapters" aria-label="章节">
-      <a href="#ignite">传火</a><a href="#fission">裂变</a><a href="#group">星群</a><a href="#reward">赏金</a>
-    </nav>
-  </div>
-  <div class="fuse" aria-hidden="true"><i></i><b></b></div>
+<div class="bar-in">
+<a class="brand" data-i18n="1" href="#top">AI <b>星火</b>计划</a>
+<nav aria-label="章节" class="chapters">
+<a data-i18n="2" href="#ignite">传火</a><a data-i18n="3" href="#fission">裂变</a><a data-i18n="4" href="#group">星群</a><a data-i18n="5" href="#reward">赏金</a>
+</nav><button aria-label="Switch to English" class="lang" id="lang" type="button">EN</button>
+</div>
+<div aria-hidden="true" class="fuse"><i></i><b></b></div>
 </header>
-
 <main>
-  <section class="wrap hero" id="top" data-scene="spark">
-    <p class="eyebrow">AI FIRST · 全员共学</p>
-    <h1>AI <em>星火</em><br>计划</h1>
-    <p class="tag">学 AI，赚赏金。<br>让一个人的经验，<span>成为更多人的能力。</span></p>
-    <p class="sub">面向全公司所有对 AI 感兴趣的同事。不限部门，不限基础，带上一个工作里的真实问题就能开始。</p>
-    <div class="cue" aria-hidden="true"><i></i>向下滚动，看一粒火种怎样燎原</div>
-  </section>
-
-  <section class="wrap chapter" id="ignite" data-scene="ignite">
-    <p class="kicker">第一章 · 传火</p>
-    <h2>火种从来不是凭空出现的，<br>它从<em>身边的人</em>手里传过来。</h2>
-    <div class="ignite-grid">
-      <div>
-        <p class="lede">公司里已经有一批同事，把 AI 用进了自己的日常工作。找到其中一位，带上你手头的一个真实问题，一起把它解决。这就是被点燃的那一刻。</p>
-        <p class="quote">会用的人带一把，<br>想学的人少走很多弯路。<small>点燃之后，你也会成为下一个传火的人</small></p>
-      </div>
-      <ol class="passing">
-        <li><h3>找到点火人</h3><p>从已具备带教资格的同事中，选一位作为你的师傅。</p></li>
-        <li><h3>从一个真实问题开始</h3><p>整理资料、分析数据、写报告、把重复操作自动化，从你岗位上的一件事入手。</p></li>
-        <li><h3>登记成果，成为“种子”</h3><p>达到岗位所需的 AI 能力要求后，在星火计划平台登记，等待评审。</p></li>
-        <li><h3>展示你的实践</h3><p>分享真实的 AI 使用记录，或演示自己搭建的业务应用，由 AI First 小组评审认定。</p></li>
-      </ol>
-    </div>
-  </section>
-
-<section class="wrap howto" id="register" aria-label="登记步骤">
-  <div class="howto-head"><h3>登记只需两步</h3><p>打开星火计划平台，在“在此登记”页完成。</p></div>
-  <div class="a-stage">
-    <div class="frame main"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div><div class="shot-wrap"><img loading="lazy" class="shot" src="images/register-list.png" alt="星火计划平台“在此登记”页面，右上角的“登记种子”按钮已用红框标出"><button class="hot" type="button" aria-label="点击“登记种子”，打开登记弹窗" aria-expanded="false" hidden></button></div></div>
-    <div class="frame pop" role="dialog" aria-label="登记种子弹窗示例"><div class="shot-wrap"><img loading="lazy" class="shot" src="images/register-dialog.png" alt="“登记种子”弹窗：确认本人信息并选择师傅"><button class="pop-x x" type="button" aria-label="关闭弹窗" hidden></button><button class="pop-x cancel" type="button" aria-label="取消" hidden></button></div></div>
-  </div>
-  <div class="a-caps">
-    <div class="cap"><span class="spark-no">1</span><div><h4>点右上角“登记种子”</h4><p>进入平台后，在“在此登记”页找到这个按钮。</p></div></div>
-    <div class="cap"><span class="spark-no">2</span><div><h4>确认信息，选择师傅</h4><p>本人信息自动带出，选好带教你的师傅，点“登记”提交评审。</p></div></div>
-  </div>
+<section class="wrap hero" data-scene="spark" id="top">
+<p class="eyebrow" data-i18n="6">AI FIRST · 全员共学</p>
+<h1 data-i18n="7">AI <em>星火</em><br/>计划</h1>
+<p class="tag" data-i18n="8">学 AI，赚赏金。<br/>让一个人的经验，<span>成为更多人的能力。</span></p>
+<p class="sub" data-i18n="9">面向全公司所有对 AI 感兴趣的同事。不限部门，不限基础，带上一个工作里的真实问题就能开始。</p>
+<div aria-hidden="true" class="cue" data-i18n="cue"><i></i>向下滚动，看一粒火种怎样燎原</div>
 </section>
-
-  <section class="wrap chapter" id="fission" data-scene="fission">
-    <div class="fission-head">
-      <p class="kicker">第二章 · 裂变</p>
-      <h2>一颗星火，<br>带出<em>一片星光</em>。</h2>
-      <p class="lede">通过评审的“种子”，就获得带教资格。被点燃的人再去点燃别人，火光一层一层往外传。</p>
-    </div>
-    <div class="story">
-      <div class="steps">
-        <div class="step" data-step="0"><div class="step-card"><b>1 / 6</b><h3>一位领航员，带着经验出发</h3><p>初始认定的星火领航员，是第一批火种。</p></div></div>
-        <div class="step" data-step="1"><div class="step-card"><b>2 / 6</b><h3>点燃身边的两位同事</h3><p>领航员带着同事 A、B，一起解决真实的工作问题。</p></div></div>
-        <div class="step" data-step="2"><div class="step-card"><b>3 / 6</b><h3>种子通过评审，成为新的火种</h3><p>A、B 展示实践成果，通过 AI First 小组评审，获得带教资格。</p></div></div>
-        <div class="step" data-step="3"><div class="step-card"><b>4 / 6</b><h3>新师傅接过火把</h3><p>A、B 各自带教下一批同事，经验沿着带教关系继续传递。</p></div></div>
-        <div class="step" data-step="4"><div class="step-card"><b>5 / 6</b><h3>更多人获得带教资格</h3><p>下一批同事也通过评审，点火的人越来越多。</p></div></div>
-        <div class="step" data-step="5"><div class="step-card"><b>6 / 6</b><h3>星火燎原</h3><p>每一颗通过评审的种子，都能带出新的种子。学习网络就这样一层层展开。</p></div></div>
-      </div>
-      <figure class="figure" aria-label="星火带教裂变关系图">
-        <div class="tally" aria-live="polite">
-          <div><strong id="lit">15</strong><span>已被点燃</span></div>
-          <div><strong id="carriers">7</strong><span>可以传火</span></div>
-        </div>
-        <div class="legend"><span><i class="m"></i>已具备师傅资格</span><span><i class="l"></i>正在学习实践</span><span>虚线代表直接带教关系</span></div>
-        <svg class="fission-svg" viewBox="0 0 1200 590" role="img" aria-labelledby="tree-title tree-desc"><title id="tree-title">星火带教裂变关系图</title><desc id="tree-desc">一位领航员带教两位同事，通过评审的同事再分别带教下一层，逐层形成带教网络。虚拟机制示意。</desc><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 300.0 V 183"/><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 900.0 V 183"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 150.0 V 333"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 450.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 750.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 1050.0 V 333"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 75.0 V 483"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 225.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 375.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 525.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 675.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 825.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 975.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 1125.0 V 483"/><g class="tree-node" data-generation="0" transform="translate(600.0,65)"><circle r="31"/><text class="node-name" y="6">领航</text><text class="node-role" y="59">星火领航员</text></g><g class="tree-node" data-generation="1" transform="translate(300.0,215)"><circle r="31"/><text class="node-name" y="6">A</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="1" transform="translate(900.0,215)"><circle r="31"/><text class="node-name" y="6">B</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(150.0,365)"><circle r="31"/><text class="node-name" y="6">A1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(450.0,365)"><circle r="31"/><text class="node-name" y="6">A2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(750.0,365)"><circle r="31"/><text class="node-name" y="6">B1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(1050.0,365)"><circle r="31"/><text class="node-name" y="6">B2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(75.0,515)"><circle r="31"/><text class="node-name" y="6">A1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(225.0,515)"><circle r="31"/><text class="node-name" y="6">A1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(375.0,515)"><circle r="31"/><text class="node-name" y="6">A2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(525.0,515)"><circle r="31"/><text class="node-name" y="6">A2-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(675.0,515)"><circle r="31"/><text class="node-name" y="6">B1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(825.0,515)"><circle r="31"/><text class="node-name" y="6">B1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(975.0,515)"><circle r="31"/><text class="node-name" y="6">B2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(1125.0,515)"><circle r="31"/><text class="node-name" y="6">B2-2</text><text class="node-role" y="59">待展开</text></g></svg>
-      </figure>
-    </div>
-    <p class="relay">学会的人成为新的师傅，新的师傅再带出下一批同事。</p>
-    <p class="note">裂变机制示意，节点均为虚拟角色。每人带教两人仅为演示，不代表实际人数、固定比例或增长承诺；学习者须通过评审后才能成为师傅。</p>
-  </section>
-
-  <section class="wrap chapter" id="group" data-scene="group">
-    <p class="kicker">第三章 · 星群</p>
-    <h2>火光连在一起，<br>就是公司的 <em>AI 学习小组</em>。</h2>
-    <p class="lede">星火计划会在公司里形成一个持续成长的 AI 学习小组。遇到问题有人交流，有效的方法大家共享，一个人的摸索变成所有人的捷径。</p>
-    <div class="group-grid">
-      <div class="trait"><h3>全员参与</h3><p>不限部门，围绕各自岗位的需求学习。</p></div>
-      <div class="trait"><h3>实战学习</h3><p>用真实工作记录和应用演示展示成果。</p></div>
-      <div class="trait"><h3>接力成长</h3><p>学会、通过评审，再带更多同事学。</p></div>
-      <div class="trait"><h3>经验共享</h3><p>有效的方法被更多同事借鉴和复用。</p></div>
-    </div>
-    <div class="navigators">
-      <strong>26</strong>
-      <p><b>位星火领航员已经点亮。</b>他们是初始认定的带教人，名单可在星火计划平台查看。还有很多没被发现的领航员：如果你已经具备 AI 实践和带教能力，或知道合适的同事，欢迎推荐。</p>
-    </div>
-    <div class="mag-head">
-      <h3>在星群里，你会越来越亮</h3>
-      <p>AI First 小组评审定级依据，L1 到 L5 逐级提升</p>
-    </div>
-    <ol class="mags">
-      <li class="mag"><div class="star" style="--s:6px"><i></i><span>L1</span></div><div><h4>AI 任务执行者<small>20 分</small></h4><p>能独立完成标准 AI 任务，把会议、文档、表格、流程和汇报材料转化为稳定产出；能使用飞书 AI 和至少 2 个外部 AI 工具。</p></div><p class="out"><b>典型交付物</b>流程梳理、数据分析、PPT 初稿、岗位提示词</p></li>
-      <li class="mag"><div class="star" style="--s:9px"><i></i><span>L2</span></div><div><h4>AI 场景实践者<small>40 分</small></h4><p>能围绕本岗位拆出高频场景，设计提示词模板、SOP 和轻量工作流；能判断哪些任务适合 AI，哪些不适合。</p></div><p class="out"><b>典型交付物</b>岗位 AI 工作流、提示词模板库、部门案例包</p></li>
-      <li class="mag"><div class="star" style="--s:12px"><i></i><span>L3</span></div><div><h4>AI 应用搭建者<small>60 分</small></h4><p>能用低代码、无代码、智能体或脚本工具搭建可复用应用，处理简单数据输入输出、权限边界、用户反馈和版本迭代。</p></div><p class="out"><b>典型交付物</b>轻量智能体、自动化流程、部门知识助手、数据分析助手</p></li>
-      <li class="mag"><div class="star" style="--s:15px"><i></i><span>L4</span></div><div><h4>AI 业务交付者<small>80 分</small></h4><p>接近 AI BP/FDE 角色，能深入业务现场，识别场景、测算 ROI、协调业务／IT／数据资源，推动真实流程从痛点到试点上线。</p></div><p class="out"><b>典型交付物</b>端到端试点方案、ROI 测算、流程改造 MVP、上线复盘报告</p></li>
-      <li class="mag"><div class="star" style="--s:18px"><i></i><span>L5</span></div><div><h4>AI 全栈构建者<small>100 分</small></h4><p>具备业务理解、产品设计、数据治理、模型调用、系统集成和安全合规的综合能力，能推动跨系统 AI 应用落地。</p></div><p class="out"><b>典型交付物</b>跨系统 AI 应用、企业级智能体、ERP／CRM／流程系统集成方案</p></li>
-    </ol>
-    <p class="note">以上为能力等级评分，奖励积分另按活动规则计算。等级要求以平台“等级标准”为准。</p>
-  </section>
-
-  <section class="wrap chapter reward" id="reward" data-scene="reward">
-    <p class="kicker">第四章 · 赏金</p>
-    <h2>传出去的每一把火，<br>都有<em>回报</em>。</h2>
-    <div class="bounty">
-      <div>
-        <p class="big">100<small>元 / 人</small></p>
-        <h3>带教奖励</h3>
-        <p>每成功带教一名同事达到岗位要求并通过评审，师傅获得 100 元奖励。带得越多，拿得越多。</p>
-      </div>
-      <div>
-        <p class="mid">1<small>积分 =</small>1<small>元</small></p>
-        <h3>分享积分</h3>
-        <p>在平台发布 AI 学习或应用场景，可获得相应积分。分享越多，收获越多。</p>
-      </div>
-    </div>
-    <div class="show">
-      <div><h4>更快整理资料</h4><p>用 AI 归纳文档、会议和信息。</p></div>
-      <div><h4>分析数据</h4><p>让表格和数据更快出结论。</p></div>
-      <div><h4>撰写报告</h4><p>从初稿到成稿，省下反复打磨的时间。</p></div>
-      <div><h4>自动化与小应用</h4><p>把重复操作变成流程，搭一个解决实际问题的工具。</p></div>
-    </div>
-    <div class="cta">
-      <div>
-        <h2>你的火种，<br>从<em>今天</em>开始。</h2>
-        <a class="join" href="https://alphaess.feishuapp.com/app/app_17er9ahsqsg" target="_blank" rel="noopener noreferrer">进入星火计划平台登记 ↗</a>
-        <p class="login">请使用公司飞书账号登录。想学习，带着一个工作问题开始；有经验，欢迎推荐自己成为师傅。</p>
-      </div>
-      <div class="contacts">
-        <div><b>袁齐能</b><p>活动规则、参与咨询、评审时间与参会安排</p></div>
-        <div><b>吴佳吟</b><p>奖金发放、教练名单补充</p></div>
-      </div>
-    </div>
-  </section>
+<section class="wrap chapter" data-scene="ignite" id="ignite">
+<p class="kicker" data-i18n="10">第一章 · 传火</p>
+<h2 data-i18n="11">火种从来不是凭空出现的，<br/>它从<em>身边的人</em>手里传过来。</h2>
+<div class="ignite-grid">
+<div>
+<p class="lede" data-i18n="12">公司里已经有一批同事，把 AI 用进了自己的日常工作。找到其中一位，带上你手头的一个真实问题，一起把它解决。这就是被点燃的那一刻。</p>
+<p class="quote" data-i18n="13">会用的人带一把，<br/>想学的人少走很多弯路。<small>点燃之后，你也会成为下一个传火的人</small></p>
+</div>
+<ol class="passing">
+<li><h3 data-i18n="14">找到点火人</h3><p data-i18n="15">从已具备带教资格的同事中，选一位作为你的师傅。</p></li>
+<li><h3 data-i18n="16">从一个真实问题开始</h3><p data-i18n="17">整理资料、分析数据、写报告、把重复操作自动化，从你岗位上的一件事入手。</p></li>
+<li><h3 data-i18n="18">登记成果，成为“种子”</h3><p data-i18n="19">达到岗位所需的 AI 能力要求后，在星火计划平台登记，等待评审。</p></li>
+<li><h3 data-i18n="20">展示你的实践</h3><p data-i18n="21">分享真实的 AI 使用记录，或演示自己搭建的业务应用，由 AI First 小组评审认定。</p></li>
+</ol>
+</div>
+</section>
+<section aria-label="登记步骤" class="wrap howto" id="register">
+<div class="howto-head"><h3 data-i18n="22">登记只需两步</h3><p data-i18n="23">打开星火计划平台，在“在此登记”页完成。</p></div>
+<div class="a-stage">
+<div class="frame main"><div aria-hidden="true" class="chrome"><i></i><i></i><i></i></div><div class="shot-wrap"><img alt="星火计划平台“在此登记”页面，右上角的“登记种子”按钮已用红框标出" class="shot" loading="lazy" src="images/register-list.png"/><button aria-expanded="false" aria-label="点击“登记种子”，打开登记弹窗" class="hot" hidden="" type="button"></button></div></div>
+<div aria-label="登记种子弹窗示例" class="frame pop" role="dialog"><div class="shot-wrap"><img alt="“登记种子”弹窗：确认本人信息并选择师傅" class="shot" loading="lazy" src="images/register-dialog.png"/><button aria-label="关闭弹窗" class="pop-x x" hidden="" type="button"></button><button aria-label="取消" class="pop-x cancel" hidden="" type="button"></button></div></div>
+</div>
+<div class="a-caps">
+<div class="cap"><span class="spark-no">1</span><div><h4 data-i18n="24">点右上角“登记种子”</h4><p data-i18n="25">进入平台后，在“在此登记”页找到这个按钮。</p></div></div>
+<div class="cap"><span class="spark-no">2</span><div><h4 data-i18n="26">确认信息，选择师傅</h4><p data-i18n="27">本人信息自动带出，选好带教你的师傅，点“登记”提交评审。</p></div></div>
+</div>
+</section>
+<section class="wrap chapter" data-scene="fission" id="fission">
+<div class="fission-head">
+<p class="kicker" data-i18n="28">第二章 · 裂变</p>
+<h2 data-i18n="29">一颗星火，<br/>带出<em>一片星光</em>。</h2>
+<p class="lede" data-i18n="30">通过评审的“种子”，就获得带教资格。被点燃的人再去点燃别人，火光一层一层往外传。</p>
+</div>
+<div class="story">
+<div class="steps">
+<div class="step" data-step="0"><div class="step-card"><b>1 / 6</b><h3 data-i18n="31">一位领航员，带着经验出发</h3><p data-i18n="32">初始认定的星火领航员，是第一批火种。</p></div></div>
+<div class="step" data-step="1"><div class="step-card"><b>2 / 6</b><h3 data-i18n="33">点燃身边的两位同事</h3><p data-i18n="34">领航员带着同事 A、B，一起解决真实的工作问题。</p></div></div>
+<div class="step" data-step="2"><div class="step-card"><b>3 / 6</b><h3 data-i18n="35">种子通过评审，成为新的火种</h3><p data-i18n="36">A、B 展示实践成果，通过 AI First 小组评审，获得带教资格。</p></div></div>
+<div class="step" data-step="3"><div class="step-card"><b>4 / 6</b><h3 data-i18n="37">新师傅接过火把</h3><p data-i18n="38">A、B 各自带教下一批同事，经验沿着带教关系继续传递。</p></div></div>
+<div class="step" data-step="4"><div class="step-card"><b>5 / 6</b><h3 data-i18n="39">更多人获得带教资格</h3><p data-i18n="40">下一批同事也通过评审，点火的人越来越多。</p></div></div>
+<div class="step" data-step="5"><div class="step-card"><b>6 / 6</b><h3 data-i18n="41">星火燎原</h3><p data-i18n="42">每一颗通过评审的种子，都能带出新的种子。学习网络就这样一层层展开。</p></div></div>
+</div>
+<figure aria-label="星火带教裂变关系图" class="figure">
+<div aria-live="polite" class="tally">
+<div><strong id="lit">15</strong><span data-i18n="43">已被点燃</span></div>
+<div><strong id="carriers">7</strong><span data-i18n="44">可以传火</span></div>
+</div>
+<div class="legend"><span data-i18n="45"><i class="m"></i>已具备师傅资格</span><span data-i18n="46"><i class="l"></i>正在学习实践</span><span data-i18n="47">虚线代表直接带教关系</span></div>
+<svg aria-labelledby="tree-title tree-desc" class="fission-svg" role="img" viewbox="0 0 1200 590"><title data-i18n="48" id="tree-title">星火带教裂变关系图</title><desc data-i18n="desc" id="tree-desc">一位领航员带教两位同事，通过评审的同事再分别带教下一层，逐层形成带教网络。虚拟机制示意。</desc><path class="tree-edge" d="M 600.0 95 V 140 H 300.0 V 183" data-generation="1"></path><path class="tree-edge" d="M 600.0 95 V 140 H 900.0 V 183" data-generation="1"></path><path class="tree-edge" d="M 300.0 245 V 290 H 150.0 V 333" data-generation="2"></path><path class="tree-edge" d="M 300.0 245 V 290 H 450.0 V 333" data-generation="2"></path><path class="tree-edge" d="M 900.0 245 V 290 H 750.0 V 333" data-generation="2"></path><path class="tree-edge" d="M 900.0 245 V 290 H 1050.0 V 333" data-generation="2"></path><path class="tree-edge" d="M 150.0 395 V 440 H 75.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 150.0 395 V 440 H 225.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 450.0 395 V 440 H 375.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 450.0 395 V 440 H 525.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 750.0 395 V 440 H 675.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 750.0 395 V 440 H 825.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 1050.0 395 V 440 H 975.0 V 483" data-generation="3"></path><path class="tree-edge" d="M 1050.0 395 V 440 H 1125.0 V 483" data-generation="3"></path><g class="tree-node" data-generation="0" transform="translate(600.0,65)"><circle r="31"></circle><text class="node-name" data-i18n="49" y="6">领航</text><text class="node-role" y="59">星火领航员</text></g><g class="tree-node" data-generation="1" transform="translate(300.0,215)"><circle r="31"></circle><text class="node-name" y="6">A</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="1" transform="translate(900.0,215)"><circle r="31"></circle><text class="node-name" y="6">B</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(150.0,365)"><circle r="31"></circle><text class="node-name" y="6">A1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(450.0,365)"><circle r="31"></circle><text class="node-name" y="6">A2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(750.0,365)"><circle r="31"></circle><text class="node-name" y="6">B1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(1050.0,365)"><circle r="31"></circle><text class="node-name" y="6">B2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(75.0,515)"><circle r="31"></circle><text class="node-name" y="6">A1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(225.0,515)"><circle r="31"></circle><text class="node-name" y="6">A1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(375.0,515)"><circle r="31"></circle><text class="node-name" y="6">A2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(525.0,515)"><circle r="31"></circle><text class="node-name" y="6">A2-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(675.0,515)"><circle r="31"></circle><text class="node-name" y="6">B1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(825.0,515)"><circle r="31"></circle><text class="node-name" y="6">B1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(975.0,515)"><circle r="31"></circle><text class="node-name" y="6">B2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(1125.0,515)"><circle r="31"></circle><text class="node-name" y="6">B2-2</text><text class="node-role" y="59">待展开</text></g></svg>
+</figure>
+</div>
+<p class="relay" data-i18n="65">学会的人成为新的师傅，新的师傅再带出下一批同事。</p>
+<p class="note" data-i18n="66">裂变机制示意，节点均为虚拟角色。每人带教两人仅为演示，不代表实际人数、固定比例或增长承诺；学习者须通过评审后才能成为师傅。</p>
+</section>
+<section class="wrap chapter" data-scene="group" id="group">
+<p class="kicker" data-i18n="67">第三章 · 星群</p>
+<h2 data-i18n="68">火光连在一起，<br/>就是公司的 <em>AI 学习小组</em>。</h2>
+<p class="lede" data-i18n="69">星火计划会在公司里形成一个持续成长的 AI 学习小组。遇到问题有人交流，有效的方法大家共享，一个人的摸索变成所有人的捷径。</p>
+<div class="group-grid">
+<div class="trait"><h3 data-i18n="70">全员参与</h3><p data-i18n="71">不限部门，围绕各自岗位的需求学习。</p></div>
+<div class="trait"><h3 data-i18n="72">实战学习</h3><p data-i18n="73">用真实工作记录和应用演示展示成果。</p></div>
+<div class="trait"><h3 data-i18n="74">接力成长</h3><p data-i18n="75">学会、通过评审，再带更多同事学。</p></div>
+<div class="trait"><h3 data-i18n="76">经验共享</h3><p data-i18n="77">有效的方法被更多同事借鉴和复用。</p></div>
+</div>
+<div class="navigators">
+<strong>26</strong>
+<p data-i18n="78"><b>位星火领航员已经点亮。</b>他们是初始认定的带教人，名单可在星火计划平台查看。还有很多没被发现的领航员：如果你已经具备 AI 实践和带教能力，或知道合适的同事，欢迎推荐。</p>
+</div>
+<div class="mag-head">
+<h3 data-i18n="79">在星群里，你会越来越亮</h3>
+<p data-i18n="80">AI First 小组评审定级依据，L1 到 L5 逐级提升</p>
+</div>
+<ol class="mags">
+<li class="mag"><div class="star" style="--s:6px"><i></i><span>L1</span></div><div><h4 data-i18n="81">AI 任务执行者<small>20 分</small></h4><p data-i18n="82">能独立完成标准 AI 任务，把会议、文档、表格、流程和汇报材料转化为稳定产出；能使用飞书 AI 和至少 2 个外部 AI 工具。</p></div><p class="out" data-i18n="83"><b>典型交付物</b>流程梳理、数据分析、PPT 初稿、岗位提示词</p></li>
+<li class="mag"><div class="star" style="--s:9px"><i></i><span>L2</span></div><div><h4 data-i18n="84">AI 场景实践者<small>40 分</small></h4><p data-i18n="85">能围绕本岗位拆出高频场景，设计提示词模板、SOP 和轻量工作流；能判断哪些任务适合 AI，哪些不适合。</p></div><p class="out" data-i18n="86"><b>典型交付物</b>岗位 AI 工作流、提示词模板库、部门案例包</p></li>
+<li class="mag"><div class="star" style="--s:12px"><i></i><span>L3</span></div><div><h4 data-i18n="87">AI 应用搭建者<small>60 分</small></h4><p data-i18n="88">能用低代码、无代码、智能体或脚本工具搭建可复用应用，处理简单数据输入输出、权限边界、用户反馈和版本迭代。</p></div><p class="out" data-i18n="89"><b>典型交付物</b>轻量智能体、自动化流程、部门知识助手、数据分析助手</p></li>
+<li class="mag"><div class="star" style="--s:15px"><i></i><span>L4</span></div><div><h4 data-i18n="90">AI 业务交付者<small>80 分</small></h4><p data-i18n="91">接近 AI BP/FDE 角色，能深入业务现场，识别场景、测算 ROI、协调业务／IT／数据资源，推动真实流程从痛点到试点上线。</p></div><p class="out" data-i18n="92"><b>典型交付物</b>端到端试点方案、ROI 测算、流程改造 MVP、上线复盘报告</p></li>
+<li class="mag"><div class="star" style="--s:18px"><i></i><span>L5</span></div><div><h4 data-i18n="93">AI 全栈构建者<small>100 分</small></h4><p data-i18n="94">具备业务理解、产品设计、数据治理、模型调用、系统集成和安全合规的综合能力，能推动跨系统 AI 应用落地。</p></div><p class="out" data-i18n="95"><b>典型交付物</b>跨系统 AI 应用、企业级智能体、ERP／CRM／流程系统集成方案</p></li>
+</ol>
+<p class="note" data-i18n="96">以上为能力等级评分，奖励积分另按活动规则计算。等级要求以平台“等级标准”为准。</p>
+</section>
+<section class="wrap chapter reward" data-scene="reward" id="reward">
+<p class="kicker" data-i18n="97">第四章 · 赏金</p>
+<h2 data-i18n="98">传出去的每一把火，<br/>都有<em>回报</em>。</h2>
+<div class="bounty">
+<div>
+<p class="big" data-i18n="99">100<small>元 / 人</small></p>
+<h3 data-i18n="100">带教奖励</h3>
+<p data-i18n="101">每成功带教一名同事达到岗位要求并通过评审，师傅获得 100 元奖励。带得越多，拿得越多。</p>
+</div>
+<div>
+<p class="mid" data-i18n="102">1<small>积分 =</small>1<small>元</small></p>
+<h3 data-i18n="103">分享积分</h3>
+<p data-i18n="104">在平台发布 AI 学习或应用场景，可获得相应积分。分享越多，收获越多。</p>
+</div>
+</div>
+<div class="show">
+<div><h4 data-i18n="105">更快整理资料</h4><p data-i18n="106">用 AI 归纳文档、会议和信息。</p></div>
+<div><h4 data-i18n="107">分析数据</h4><p data-i18n="108">让表格和数据更快出结论。</p></div>
+<div><h4 data-i18n="109">撰写报告</h4><p data-i18n="110">从初稿到成稿，省下反复打磨的时间。</p></div>
+<div><h4 data-i18n="111">自动化与小应用</h4><p data-i18n="112">把重复操作变成流程，搭一个解决实际问题的工具。</p></div>
+</div>
+<div class="cta">
+<div>
+<h2 data-i18n="113">你的火种，<br/>从<em>今天</em>开始。</h2>
+<a class="join" data-i18n="114" href="https://alphaess.feishuapp.com/app/app_17er9ahsqsg" rel="noopener noreferrer" target="_blank">进入星火计划平台登记 ↗</a>
+<p class="login" data-i18n="115">请使用公司飞书账号登录。想学习，带着一个工作问题开始；有经验，欢迎推荐自己成为师傅。</p>
+</div>
+<div class="contacts">
+<div><b>袁齐能</b><p data-i18n="117">活动规则、参与咨询、评审时间与参会安排</p></div>
+<div><b>吴佳吟</b><p data-i18n="119">奖金发放、教练名单补充</p></div>
+</div>
+</div>
+</section>
 </main>
-
-<footer><div class="wrap"><span>AI 星火计划 · AI First 小组</span><span>让 AI 成为更多岗位的日常能力</span></div></footer>
-
+<footer><div class="wrap"><span data-i18n="120">AI 星火计划 · AI First 小组</span><span data-i18n="121">让 AI 成为更多岗位的日常能力</span></div></footer>
 <details class="tools">
-  <summary>编辑 / 下载</summary>
-  <div>
-    <button id="edit" type="button" aria-pressed="false">编辑文字</button>
-    <button id="save" type="button">下载 HTML</button>
-    <output id="edit-status">点击“编辑文字”可直接修改页面内容</output>
-  </div>
+<summary data-i18n="122">编辑 / 下载</summary>
+<div>
+<button aria-pressed="false" data-i18n="123" id="edit" type="button">编辑文字</button>
+<button data-i18n="124" id="save" type="button">下载 HTML</button>
+<output data-i18n="125" id="edit-status">点击“编辑文字”可直接修改页面内容</output>
+</div>
 </details>
-
 <script>
 (()=>{
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -484,11 +487,13 @@ function prog(){const m=document.documentElement.scrollHeight-innerHeight,r=m>0?
 addEventListener('scroll',()=>{if(!q){q=true;requestAnimationFrame(prog)}},{passive:true});prog();
 
 /* ---------- fission steps ---------- */
+const T=(z,e)=>(window.sparkLang&&window.sparkLang()==='en')?e:z;
 const states=[{v:0,q:0},{v:1,q:0},{v:1,q:1},{v:2,q:1},{v:2,q:2},{v:3,q:2}];
 const lit=document.getElementById('lit'),car=document.getElementById('carriers');
-function showTree(n){const s=states[n];
+let cur=5;
+function showTree(n){cur=n;const s=states[n];
   document.querySelectorAll('.tree-node').forEach(el=>{const g=+el.dataset.generation;el.classList.toggle('shown',g<=s.v);el.classList.toggle('qualified',g<=s.q);
-    el.querySelector('.node-role').textContent=g===0?'星火领航员':g<=s.q?'通过评审 · 新师傅':'学习实践中'});
+    el.querySelector('.node-role').textContent=g===0?T('星火领航员','Navigator'):g<=s.q?T('通过评审 · 新师傅','Passed · new mentor'):T('学习实践中','Learning')});
   document.querySelectorAll('.tree-edge').forEach(el=>el.classList.toggle('shown',+el.dataset.generation<=s.v));
   lit.textContent=2**(s.v+1)-1;car.textContent=2**(s.q+1)-1;
   document.querySelectorAll('.step').forEach(el=>el.classList.toggle('on',+el.dataset.step===n));}
@@ -496,6 +501,7 @@ const so=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting)sho
 document.querySelectorAll('.step').forEach(s=>so.observe(s));
 /* Fully lit until the reader reaches the story, so the figure is complete at rest. */
 showTree(5);document.querySelectorAll('.step').forEach(el=>el.classList.remove('on'));
+document.addEventListener('spark-lang',()=>{const on=document.querySelector('.step.on');showTree(cur);if(!on)document.querySelectorAll('.step').forEach(el=>el.classList.remove('on'))});
 
 /* ---------- edit & download ---------- */
 const editBtn=document.getElementById('edit'),status=document.getElementById('edit-status');
@@ -503,20 +509,19 @@ const editable=[...document.querySelectorAll('main h1,main h2,main h3,main h4,ma
 let editing=false;
 editBtn.addEventListener('click',()=>{editing=!editing;document.body.classList.toggle('editing',editing);
   editable.forEach(el=>{el.contentEditable=String(editing);el.spellcheck=false});
-  editBtn.textContent=editing?'完成编辑':'编辑文字';editBtn.setAttribute('aria-pressed',String(editing));
-  status.textContent=editing?'点击虚线框修改文字，改完请下载 HTML 保存':'点击“编辑文字”可直接修改页面内容';});
+  editBtn.textContent=editing?T('完成编辑','Done'):T('编辑文字','Edit text');editBtn.setAttribute('aria-pressed',String(editing));
+  status.textContent=editing?T('点击虚线框修改文字，改完请下载 HTML 保存','Click a dashed box to edit; download the HTML to keep changes'):T('点击“编辑文字”可直接修改页面内容','Click “Edit text” to change the page content directly');});
 document.querySelector('main').addEventListener('paste',e=>{if(!editing)return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))});
 document.querySelector('main').addEventListener('click',e=>{if(editing&&e.target.closest('a'))e.preventDefault()});
 document.getElementById('save').addEventListener('click',()=>{
-  const c=document.documentElement.cloneNode(true);c.querySelector('body').classList.remove('editing');
+  const wasEn=window.sparkLang&&window.sparkLang()==='en';if(wasEn)window.sparkSetLang('zh');const c=document.documentElement.cloneNode(true);if(wasEn)window.sparkSetLang('en');c.querySelector('body').classList.remove('editing');
   c.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
   const b=c.querySelector('#edit');b.textContent='编辑文字';b.setAttribute('aria-pressed','false');
   const url=URL.createObjectURL(new Blob(['<!doctype html>\n'+c.outerHTML],{type:'text/html;charset=utf-8'}));
   const a=document.createElement('a');a.href=url;a.download='AI星火计划.html';document.body.append(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),30000);status.textContent='已发起下载。在预览环境中下载可能被拦截，请在正式页面操作';});
+  setTimeout(()=>URL.revokeObjectURL(url),30000);status.textContent=T('已发起下载。在预览环境中下载可能被拦截，请在正式页面操作','Download started. Previews may block downloads; use the live page.');});
 })();
 </script>
-
 <script>
 (()=>{const st=document.querySelector('.a-stage');if(!st)return;
 const hot=st.querySelector('.hot');
@@ -526,6 +531,28 @@ hot.addEventListener('click',e=>{e.stopPropagation();set(!st.classList.contains(
 st.querySelectorAll('.pop-x').forEach(b=>b.addEventListener('click',()=>set(false)));
 st.addEventListener('click',e=>{if(st.classList.contains('open')&&!e.target.closest('.pop'))set(false)});
 addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+})();
+</script>
+
+<script>
+(()=>{
+const EN={"cue":"<i></i>Scroll down to watch one spark spread","desc":"One navigator coaches two colleagues; those who pass review each coach the next layer, forming a coaching network layer by layer. Fictional illustration.","1": "AI <b>Spark</b>", "2": "Ignite", "3": "Spread", "4": "Network", "5": "Rewards", "6": "AI FIRST · LEARNING TOGETHER", "7": "AI <em>Spark</em><br/>Program", "8": "Learn AI, earn rewards.<br/>Turn one person’s know-how <span>into everyone’s skill.</span>", "9": "Open to every colleague curious about AI. Any department, any starting level. Bring one real problem from your work and you’re ready.", "10": "Chapter 1 · Passing the spark", "11": "A spark never comes from nowhere.<br/>It’s handed over by <em>the people around you</em>.", "12": "Some colleagues already use AI in their daily work. Find one of them, bring a real problem from your desk, and solve it together. That’s the moment you catch the spark.", "13": "A little help from someone who knows<br/>saves a learner a lot of detours.<small>Once you’re lit, you’ll pass the spark on next</small>", "14": "Find someone to light the way", "15": "Pick a mentor from colleagues already qualified to coach.", "16": "Start with a real problem", "17": "Organizing material, analyzing data, writing reports, automating repetitive steps: begin with one task from your own role.", "18": "Register your result as a “seed”", "19": "Once you reach the AI skill level your role requires, register on the Spark platform for review.", "20": "Show your work", "21": "Share real records of how you use AI, or demo a business app you built. The AI First team reviews and confirms it.", "22": "Two steps to register", "23": "Open the Spark platform and go to the “在此登记” (Register here) page.", "24": "Click “登记种子” (Register seed) at the top right", "25": "You’ll find this button on the “在此登记” page.", "26": "Confirm your details and pick a mentor", "27": "Your profile fills in automatically. Choose your mentor and click “登记” (Register) to submit for review.", "28": "Chapter 2 · Spreading", "29": "One spark<br/>becomes <em>a sky full of light</em>.", "30": "A “seed” that passes review qualifies as a mentor. Everyone who catches the spark lights someone else, and the glow spreads layer by layer.", "31": "A navigator sets out with experience", "32": "The initially recognized Spark Navigators are the first sparks.", "33": "Light up two colleagues", "34": "The navigator works with colleagues A and B on real work problems.", "35": "Seeds pass review and become new sparks", "36": "A and B present their results, pass the AI First review and qualify as mentors.", "37": "New mentors take up the torch", "38": "A and B each coach the next colleagues, passing experience along.", "39": "More people qualify to coach", "40": "The next group passes review too, so more people can light the way.", "41": "From one spark to a wildfire", "42": "Every seed that passes review can grow new seeds. That’s how the learning network unfolds, layer by layer.", "43": "Lit", "44": "Can pass it on", "45": "<i class=\"m\"></i>Qualified mentor", "46": "<i class=\"l\"></i>Learning and practicing", "47": "Dashed lines show direct coaching", "48": "Spark coaching network diagram", "49": "Guide", "65": "Learners become mentors, and new mentors bring along the next colleagues.", "66": "Illustration only; all nodes are fictional. Two learners per person is just for the demo and does not represent actual numbers, a fixed ratio or a growth promise. Learners must pass review before becoming mentors.", "67": "Chapter 3 · Constellation", "68": "Link the lights together<br/>and you get our <em>AI learning group</em>.", "69": "The Spark Program grows into an ongoing AI learning group across the company. Questions get answered, good methods get shared, and one person’s trial and error becomes everyone’s shortcut.", "70": "Open to all", "71": "Any department, learning around the needs of your own role.", "72": "Learn by doing", "73": "Show results with real work records and app demos.", "74": "Grow in relay", "75": "Learn, pass review, then teach more colleagues.", "76": "Share what works", "77": "Effective methods get reused by more colleagues.", "78": "<b>Spark Navigators are already lit.</b> They are the initially recognized mentors; the full list is on the Spark platform. Many navigators haven’t been spotted yet. If you already practice and teach AI, or know a colleague who does, recommend them.", "79": "In the constellation, you keep getting brighter", "80": "AI First review levels, rising from L1 to L5", "81": "AI Task Executor<small>20 pts</small>", "82": "Independently completes standard AI tasks, turning meetings, documents, spreadsheets, processes and reports into reliable output; uses Feishu AI and at least 2 external AI tools.", "83": "<b>Typical deliverables</b>Process maps, data analysis, first-draft slides, role-specific prompts", "84": "AI Scenario Practitioner<small>40 pts</small>", "85": "Breaks down high-frequency scenarios in their role and designs prompt templates, SOPs and lightweight workflows; can judge which tasks suit AI and which don’t.", "86": "<b>Typical deliverables</b>Role AI workflows, prompt template library, department case pack", "87": "AI App Builder<small>60 pts</small>", "88": "Builds reusable apps with low-code, no-code, agent or scripting tools, handling simple data input and output, permission boundaries, user feedback and version iteration.", "89": "<b>Typical deliverables</b>Lightweight agents, automated workflows, department knowledge assistants, data analysis assistants", "90": "AI Business Deliverer<small>80 pts</small>", "91": "Close to an AI BP/FDE role: works on the business front line to identify scenarios, estimate ROI, coordinate business, IT and data resources, and take real processes from pain point to pilot launch.", "92": "<b>Typical deliverables</b>End-to-end pilot plans, ROI estimates, process redesign MVPs, launch retrospectives", "93": "AI Full-Stack Builder<small>100 pts</small>", "94": "Combines business understanding, product design, data governance, model integration, system integration and security compliance to deliver cross-system AI applications.", "95": "<b>Typical deliverables</b>Cross-system AI apps, enterprise agents, ERP/CRM/workflow integration plans", "96": "These are skill-level scores; reward points are calculated separately under the program rules. Level requirements follow the “等级标准” (Level standards) page on the platform.", "97": "Chapter 4 · Rewards", "98": "Every spark you pass on<br/>comes with a <em>reward</em>.", "99": "100<small>RMB each</small>", "100": "Coaching reward", "101": "For each colleague you coach to the required level who passes review, you receive 100 RMB. The more you coach, the more you earn.", "102": "1<small>point =</small>1<small>RMB</small>", "103": "Sharing points", "104": "Post AI learning notes or use cases on the platform to earn points. The more you share, the more you gain.", "105": "Organize faster", "106": "Use AI to summarize documents, meetings and information.", "107": "Analyze data", "108": "Get conclusions from spreadsheets and data sooner.", "109": "Write reports", "110": "From first draft to final, save the hours of polishing.", "111": "Automation and small apps", "112": "Turn repetitive steps into workflows, or build a tool that solves a real problem.", "113": "Your spark<br/>starts <em>today</em>.", "114": "Register on the Spark platform ↗", "115": "Sign in with your company Feishu account. Want to learn? Start with one work problem. Have experience? Put yourself forward as a mentor.", "117": "Program rules, questions, review schedule and session arrangements", "119": "Reward payouts and additions to the coach list", "120": "AI Spark Program · AI First team", "121": "Making AI an everyday skill in more roles", "122": "Edit / Download", "123": "Edit text", "124": "Download HTML", "125": "Click “Edit text” to change the page content directly"}, ATTR=[[".chapters", "aria-label", "Chapters"], ["#register", "aria-label", "How to register"], [".hot", "aria-label", "Click “Register seed” to open the registration dialog"], [".frame.pop", "aria-label", "Example of the registration dialog"], [".pop-x.x", "aria-label", "Close dialog"], [".pop-x.cancel", "aria-label", "Cancel"], [".figure", "aria-label", "Spark coaching network diagram"], [".frame.main img", "alt", "The “Register here” page of the Spark platform, with the “Register seed” button outlined in red"], [".frame.pop img", "alt", "The “Register seed” dialog: confirm your details and choose a mentor"]];
+const zh=new Map(),zhAttr=new Map();let lang='zh';
+const btn=document.getElementById('lang');
+window.sparkT=(z,e)=>lang==='en'?e:z;
+function setLang(l){lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{if(!zh.has(el))zh.set(el,el.innerHTML);el.innerHTML=l==='en'?EN[el.dataset.i18n]:zh.get(el)});
+  ATTR.forEach(([sel,attr,en])=>document.querySelectorAll(sel).forEach(el=>{const k=el;if(!zhAttr.has(k))zhAttr.set(k,{});const m=zhAttr.get(k);if(!(attr in m))m[attr]=el.getAttribute(attr);el.setAttribute(attr,l==='en'?en:m[attr])}));
+  document.documentElement.lang=l==='en'?'en':'zh-CN';
+  document.title=l==='en'?'AI Spark Program':'AI 星火计划';
+  btn.textContent=l==='en'?'中文':'EN';btn.setAttribute('aria-label',l==='en'?'切换到中文':'Switch to English');
+  document.dispatchEvent(new CustomEvent('spark-lang',{detail:l}));
+  try{localStorage.setItem('spark-lang',l)}catch(e){}
+}
+window.sparkSetLang=setLang;window.sparkLang=()=>lang;
+btn.addEventListener('click',()=>setLang(lang==='en'?'zh':'en'));
+let saved=null;try{saved=localStorage.getItem('spark-lang')}catch(e){}
+if(saved==='en')setLang('en');
 })();
 </script>
 </body>
