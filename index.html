@@ -1,101 +1,463 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI 星火计划 · 可编辑滚动演示</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI 星火计划</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <style>
-:root{--paper:#f6f5f1;--ink:#202d40;--muted:#647083;--accent:#a37c42;--line:#d9dde3;--green:#17283f}*{box-sizing:border-box}body{margin:0;background:#e7e8e2;color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",sans-serif}.viewport{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.frame{position:relative;flex:none}.slide{width:1600px;height:900px;background:var(--paper);padding:54px 70px 36px;transform-origin:top left;overflow:hidden;position:relative;border-top:8px solid var(--accent)}.topline{display:flex;align-items:center;justify-content:space-between;font-size:19px;font-weight:600;letter-spacing:2px;color:var(--green)}.topline span:last-child{color:var(--muted);font-weight:400;letter-spacing:1px}.hero{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin:30px 0 32px;align-items:center}.hero h1{font-size:76px;letter-spacing:3px;line-height:1.15;margin:0 0 14px;font-weight:800}.hero h1 em{font-style:normal;color:var(--accent)}.tagline{font-size:29px;margin:0;letter-spacing:1px}.definition{border-left:3px solid var(--accent);padding-left:26px}.definition strong{font-size:28px;line-height:1.5;font-weight:600}.definition p{font-size:21px;line-height:1.7;margin:10px 0 0;color:var(--muted)}.main{display:grid;grid-template-columns:1fr 1.22fr .92fr;gap:38px;border-top:1px solid var(--line);padding-top:27px}.column{min-width:0}.column+.column{border-left:1px solid var(--line);padding-left:38px}h2{font-size:27px;margin:0 0 22px;line-height:1.2}h2 small{font-size:15px;color:var(--accent);margin-right:12px;font-weight:500}.benefit{margin-bottom:20px}.benefit h3,.feature h3{font-size:22px;margin:0 0 6px;font-weight:600}.benefit p,.feature p{font-size:18px;line-height:1.6;color:var(--muted);margin:0}.reward{border-top:1px solid var(--line);padding-top:17px;display:flex;gap:26px}.reward strong{font-size:39px;color:var(--accent);font-weight:700;line-height:1.1}.reward strong span{font-size:20px;margin-left:4px}.reward p{font-size:17px;line-height:1.55;margin:6px 0 0;color:var(--muted)}.reward>div{flex:1}.steps{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:19px 20px}.steps li{display:flex;align-items:flex-start;gap:12px}.num{font-family:Arial,sans-serif;font-size:30px;font-weight:500;color:#a6ada2;line-height:1.15}.steps h3{margin:0 0 6px;font-size:22px}.steps p{margin:0;color:var(--muted);font-size:17px;line-height:1.5}.steps li:last-child .num,.steps li:last-child h3{color:var(--accent)}.relay{margin-top:24px;background:var(--green);color:#fff;padding:19px 23px}.relay strong{font-size:24px;font-weight:600;display:block;margin-bottom:7px}.relay p{color:#d1d9e4;font-size:18px;line-height:1.55;margin:0}.qualification{font-size:16px;line-height:1.6;color:var(--muted);margin:13px 0 0}.feature{margin-bottom:18px}.feature h3{color:var(--green)}.bottom{border-top:1px solid var(--line);margin-top:25px;padding-top:22px;display:grid;grid-template-columns:1.45fr 1fr;gap:46px;align-items:center}.vision h2{font-size:27px;margin:0 0 9px}.vision p{font-size:19px;color:var(--muted);line-height:1.65;margin:0}.action{display:flex;align-items:center;gap:22px}.join{flex:none;background:var(--accent);color:#fff;text-decoration:none;padding:17px 23px;font-size:21px;font-weight:600;border-radius:3px}.join:hover{background:#876333}.action p{font-size:17px;line-height:1.7;margin:0}.footer{display:flex;justify-content:space-between;font-size:15px;color:var(--muted);margin-top:24px}.tools{position:fixed;bottom:12px;right:20px;display:flex;gap:8px;opacity:.25;transition:opacity .2s}.tools:hover,.tools:focus-within{opacity:1}.tools button{font:14px "Microsoft YaHei",sans-serif;border:1px solid #ccc;background:#fff;padding:7px 13px;cursor:pointer;border-radius:5px}a:focus-visible,button:focus-visible{outline:3px solid #284f43;outline-offset:4px}
-@media(max-width:700px){.viewport{display:block;padding:0}.frame{width:auto!important;height:auto!important}.slide{width:100%;height:auto;min-height:100vh;transform:none!important;padding:30px 24px}.topline{font-size:13px;letter-spacing:0}.hero{grid-template-columns:1fr;gap:24px;margin:28px 0}.hero h1{font-size:46px}.tagline{font-size:22px}.definition strong{font-size:22px}.definition p{font-size:17px}.main{grid-template-columns:1fr;gap:28px}.column+.column{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:25px}.bottom{grid-template-columns:1fr;gap:24px}.action{flex-wrap:wrap}.footer{flex-direction:column;gap:8px;font-size:13px}.tools{display:none}h2,.vision h2{font-size:24px}.reward{max-width:440px}}
-@media print{@page{size:1600px 900px;margin:0}body{background:var(--paper)}.viewport{padding:0;display:block}.frame{width:1600px!important;height:900px!important}.slide{transform:none!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}.tools{display:none}}
-</style>
-<style>
-/* 连续滚动演示：每个主题独立展开，取消固定画布缩放。 */
-html{scroll-behavior:smooth}body{background:var(--paper)}.viewport{display:block;padding:0;min-height:100vh}.frame{width:100%!important;height:auto!important}.slide{width:100%;height:auto;overflow:visible;padding:0;border-top:8px solid var(--accent);transform:none!important}.topline{max-width:1280px;margin:auto;padding:30px 48px}.hero{max-width:1280px;margin:0 auto;min-height:65vh;padding:75px 48px 100px;grid-template-columns:1.15fr 1fr;gap:65px}.hero h1{font-size:clamp(56px,6.5vw,90px)}.tagline{font-size:26px;line-height:1.6}.definition strong{font-size:30px}.definition p{font-size:22px}.main{display:block;border:0;padding:0}.column{padding:80px max(48px,calc((100vw - 1184px)/2));min-height:75vh;border-top:1px solid var(--line)}.column+.column{padding-left:max(48px,calc((100vw - 1184px)/2));border-left:0}.column:nth-child(2){background:#edf0f4}.column h2{font-size:38px;margin-bottom:42px}.column h2 small{font-size:20px;margin-right:20px}.benefit{margin-bottom:30px}.benefit h3,.feature h3{font-size:27px;margin-bottom:10px}.benefit p,.feature p{font-size:22px;line-height:1.8}.reward{margin-top:36px;padding-top:32px;max-width:840px;gap:70px}.reward strong{font-size:56px}.reward strong span{font-size:25px}.reward p{font-size:21px;line-height:1.7}.steps{grid-template-columns:repeat(3,1fr);gap:45px 35px}.num{font-size:42px}.steps h3{font-size:26px}.steps p{font-size:20px;line-height:1.7}.relay{margin-top:44px;padding:30px 36px}.relay strong{font-size:29px}.relay p{font-size:22px}.qualification{font-size:18px;margin-top:20px}.feature{display:grid;grid-template-columns:220px 1fr;gap:30px;margin:0;padding:27px 0;border-bottom:1px solid var(--line)}.feature h3{margin:0}.bottom{display:block;background:var(--green);color:white;margin:0;padding:85px max(48px,calc((100vw - 1184px)/2));min-height:55vh}.vision h2{font-size:38px;margin-bottom:20px}.vision p{font-size:24px;color:#d1d9e4;line-height:1.8}.action{margin-top:44px;gap:32px}.action p{font-size:21px;color:#d1d9e4}.join{font-size:23px;padding:21px 30px}.footer{max-width:1280px;margin:auto;padding:30px 48px 110px;gap:25px;font-size:16px;line-height:1.7}.editing [contenteditable=true]:focus{background:#e9b66b20}
-@media(max-width:700px){.topline{padding:23px 24px;gap:20px;font-size:12px}.hero{padding:55px 24px 65px;min-height:0;grid-template-columns:1fr;gap:35px}.hero h1{font-size:49px}.tagline{font-size:21px}.definition strong{font-size:23px}.definition p{font-size:18px}.column,.column+.column{padding:48px 24px;min-height:0}.column h2{font-size:28px;margin-bottom:30px}.column h2 small{font-size:17px;margin-right:12px}.benefit h3,.feature h3{font-size:22px}.benefit p,.feature p{font-size:18px}.reward{gap:20px}.reward strong{font-size:38px}.reward strong span{font-size:18px}.reward p{font-size:16px}.steps{grid-template-columns:1fr;gap:25px}.steps h3{font-size:23px}.steps p{font-size:18px}.relay{padding:25px}.relay strong{font-size:23px}.relay p{font-size:19px}.qualification{font-size:16px}.feature{display:block;padding:23px 0}.feature h3{margin-bottom:8px}.bottom{padding:50px 24px;min-height:0}.vision h2{font-size:29px;line-height:1.5}.vision p{font-size:20px}.action{align-items:flex-start;gap:24px}.action p{font-size:18px}.join{font-size:20px}.footer{padding:25px 24px 145px;gap:10px;font-size:14px}.slide{padding:0}}
-@media print{@page{size:A4;margin:15mm}.frame{width:100%!important;height:auto!important}.slide{width:100%;height:auto;padding:0}.topline{padding:0 0 20px}.hero{min-height:0;padding:30px 0 50px;display:block}.hero h1{font-size:48px}.definition{margin-top:30px}.column,.column+.column{padding:35px 0;min-height:0;break-inside:avoid}.column h2,.vision h2{font-size:28px}.steps{grid-template-columns:1fr 1fr}.bottom{padding:35px 20px;min-height:0;break-inside:avoid}.footer{padding:25px 0}.feature{grid-template-columns:160px 1fr}.reward strong{font-size:38px}}
-</style>
-<style>
-.hero h1 em{color:var(--accent)}.topline{color:var(--muted)}.slide{border-top-color:#17283f}.relay{border-left:3px solid #b99a66;background:#17283f}.bottom{background:#17283f}.join{background:#b99a66;color:#17283f}.join:hover{background:#d0b78e;color:#17283f}.reward strong{color:#95703b}.num{color:#8795a7}.tools{border:1px solid #d9dde3;box-shadow:0 5px 25px #17283f12}.tools button{border-color:#d9dde3;color:#24364f}.tools button:hover{background:#edf0f4}.tools button.active{background:#17283f;color:#fff}.definition{border-color:#b99a66}
-</style>
-<style>.levels{background:#edf0f4}.levels .feature{grid-template-columns:300px 1fr}.level-intro{font-size:23px;color:var(--muted);line-height:1.7;margin:-15px 0 25px}.levels .level-output{font-size:18px;color:#95703b;margin-top:12px}.levels .feature h3{font-size:25px}.levels b{color:#95703b}@media(max-width:700px){.level-intro{font-size:18px}.levels .feature h3{font-size:23px}.levels .level-output{font-size:16px}}</style><style>
-.platform{background:#f6f5f1}.platform-intro{font-size:23px;color:var(--muted);line-height:1.7}.platform-tabs{display:flex;gap:32px;border-bottom:1px solid var(--line);margin:35px 0}.platform-tabs button{border:0;border-bottom:3px solid transparent;background:none;padding:15px 0;font:600 23px "Microsoft YaHei",sans-serif;color:var(--muted);cursor:pointer}.platform-tabs button[aria-pressed=true]{color:var(--green);border-bottom-color:var(--accent)}.platform-caption h3{font-size:29px;margin:0 0 12px}.platform-caption p{font-size:21px;color:var(--muted);line-height:1.8}.platform-actions{display:flex;align-items:center;gap:28px;margin-top:25px}.platform-actions button{background:var(--green);color:white;border:0;padding:14px 22px;font:18px "Microsoft YaHei",sans-serif;cursor:pointer}.platform-actions a{font-size:18px;color:var(--accent)}.platform-note{font-size:16px;color:var(--muted);line-height:1.8}#platform-frame{width:100%;height:660px;border:1px solid var(--line);background:white;margin-top:20px}#platform-frame[hidden]{display:none}@media(max-width:700px){.platform-tabs{gap:20px;flex-wrap:wrap}.platform-tabs button{font-size:18px}.platform-intro,.platform-caption p{font-size:18px}.platform-caption h3{font-size:24px}.platform-actions{align-items:flex-start;flex-direction:column;gap:20px}#platform-frame{height:580px}}@media print{#platform-frame,.platform-tabs,.platform-actions button{display:none}.platform{break-inside:avoid}}
-</style>
-<style>
-.demo-panel[hidden]{display:none}.demo-panel h3{font-size:29px;margin:28px 0 15px}.demo-panel p{font-size:20px;line-height:1.8;color:var(--muted)}.demo-panel .platform-note{font-size:16px}.relay-map{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin:38px 0}.relay-stage{border-top:3px solid #ccd3dc;display:flex;flex-direction:column;gap:20px;padding:22px 0;opacity:.3;transition:opacity .6s,border-color .6s}.relay-stage.active{opacity:1;border-color:var(--accent)}.relay-stage strong{font-size:23px;color:var(--green)}.relay-stage span{font-size:17px;color:var(--muted);line-height:1.7}.relay-stage .stage-caption{font-size:15px;color:var(--accent)}.demo-controls{display:flex;flex-wrap:wrap;gap:15px}.demo-controls button,.level-switch button{font:18px "Microsoft YaHei",sans-serif;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--green);padding:12px 20px}.demo-controls button:first-child,.level-switch button[aria-pressed=true]{background:var(--green);color:white}.demo-status{font-size:19px;margin:24px 0;color:var(--accent);min-height:32px}.level-switch{display:flex;gap:15px;margin:30px 0;flex-wrap:wrap}.level-switch button{font-size:24px;padding:14px 27px}#level-detail{border-left:3px solid var(--accent);padding:8px 28px;margin:30px 0;min-height:200px}#level-detail h3{margin-top:0}#level-detail .level-output{color:var(--accent)}.demo-panel label{font-size:22px;display:block;margin-top:32px}.reward-input{display:flex;gap:30px;align-items:center;margin:24px 0;max-width:800px}.reward-input input{flex:1;min-width:0;accent-color:var(--accent);height:28px}.reward-input output{font-size:27px;min-width:85px}.reward-equation{display:flex;align-items:center;gap:45px;margin:32px 0}.reward-equation span{font-size:25px;color:var(--muted)}.reward-equation strong{font-size:64px;color:var(--accent)}.share-reward{border-top:1px solid var(--line);margin-top:35px;padding-top:30px}.share-reward strong{font-size:23px}@media(max-width:700px){.relay-map{grid-template-columns:1fr 1fr;gap:16px}.relay-stage strong{font-size:19px}.relay-stage span{font-size:15px}.demo-panel h3{font-size:23px}.demo-panel p{font-size:18px}.reward-equation{flex-wrap:wrap;gap:15px}.reward-equation strong{font-size:48px}.level-switch{gap:8px}.level-switch button{padding:10px 15px}.demo-controls button{font-size:16px;padding:10px 13px}}@media(prefers-reduced-motion:reduce){.relay-stage{transition:none}}@media print{.demo-panel[hidden]{display:block}.relay-stage{opacity:1}.demo-controls,.level-switch,.reward-input{display:none}}
-</style>
-<style>
-.fission-section{background:#f0f2f5}.tree-legend{display:flex;gap:26px;flex-wrap:wrap;align-items:center;margin:30px 0 12px;color:var(--muted);font-size:17px}.tree-legend span{display:flex;align-items:center;gap:9px}.tree-legend i{display:inline-block;width:12px;height:12px;border-radius:50%}.mentor-dot{background:#375b50}.learner-dot{background:#b99a66}.tree-scroll{overflow-x:auto;padding:15px 0 28px}.fission-svg{width:100%;min-width:750px;display:block}.tree-edge{fill:none;stroke:#b99a66;stroke-width:2;opacity:0;transition:opacity .7s}.tree-node{opacity:0;transition:opacity .7s}.tree-node circle{fill:#f1e3c9;stroke:#b99a66;stroke-width:2;transition:fill .7s,stroke .7s}.tree-node .node-name{font-size:16px;fill:#29384a;text-anchor:middle;font-weight:600}.tree-node .node-role{font-size:16px;fill:#6b7583;text-anchor:middle}.tree-node.qualified circle{fill:#375b50;stroke:#375b50}.tree-node.qualified .node-name{fill:#fff}.tree-node.shown,.tree-edge.shown{opacity:1}.fission-section .demo-status{font-size:22px;line-height:1.7;min-height:76px;margin-top:24px}.fission-section .platform-note{font-size:16px;line-height:1.8;color:var(--muted)}@media(max-width:700px){.tree-legend{font-size:14px;gap:14px}.fission-section .demo-status{font-size:18px}.fission-section .platform-note{font-size:14px}}@media(prefers-reduced-motion:reduce){.tree-node,.tree-edge,.tree-node circle{transition:none}}@media print{.tree-node,.tree-edge{opacity:1}.fission-svg{min-width:0}}
+/* Layout: one night sky behind everything (sticky canvas); chapters scroll over it like a fuse burning top to bottom. */
+:root{
+  --night:#0a0f1e; --night-2:#111a31; --dust:#1d2843;
+  --ink:#f3eee4; --muted:#9ea8bd; --faint:#5f6a83;
+  --ember:#ffb54a; --flame:#ff7b3a; --glow:rgba(255,170,70,.18);
+  --serif:"Songti SC","STSong","Noto Serif SC","Noto Serif CJK SC","Source Han Serif SC","SimSun",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC","Hiragino Sans GB",system-ui,sans-serif;
+  --num:"DIN Alternate","Bahnschrift","Avenir Next Condensed","Roboto Condensed","Arial Narrow",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--night)}
+body{margin:0;background:var(--night);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:4px}
+
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 80% at 50% 120%,rgba(255,123,58,.10),transparent 60%)}
+
+/* ---------- top bar with a burning fuse ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:linear-gradient(var(--night),rgba(10,15,30,.72));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.bar-in{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{font-family:var(--serif);font-weight:900;font-size:19px;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--ember);font-weight:900}
+.chapters{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chapters a{font-size:14px;color:var(--muted);text-decoration:none;padding:4px 10px;border-radius:99px;letter-spacing:.06em;transition:color .3s,background .3s}
+.chapters a[aria-current]{color:var(--night);background:var(--ember)}
+.fuse{position:relative;height:2px;background:var(--dust)}
+.fuse i{position:absolute;inset:0 auto 0 0;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--flame),var(--ember))}
+.fuse b{position:absolute;top:50%;left:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fff6dc;box-shadow:0 0 6px 2px var(--ember),0 0 18px 6px var(--flame)}
+
+/* ---------- shared ---------- */
+main{position:relative;z-index:1}
+.wrap{max-width:1180px;margin:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.chapter{padding-block:clamp(90px,14vh,160px)}
+.kicker{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.32em;color:var(--ember);margin:0 0 22px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--ember)}
+h1,h2,h3{font-family:var(--serif);font-weight:900;text-wrap:balance;margin:0}
+h2{font-size:clamp(34px,5vw,60px);line-height:1.18;letter-spacing:.02em}
+h2 em,h1 em{font-style:normal;color:var(--ember);text-shadow:0 0 28px rgba(255,150,60,.55)}
+.lede{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:34em;margin:24px 0 0}
+p{margin:0}
+
+/* ---------- hero ---------- */
+.hero{min-height:min(86vh,820px);display:flex;flex-direction:column;justify-content:center;padding-block:60px 90px}
+.hero .eyebrow{font-size:14px;letter-spacing:.4em;color:var(--muted);margin-bottom:26px}
+.hero h1{font-size:clamp(58px,10vw,138px);line-height:1.02;letter-spacing:.04em}
+.hero h1 em{display:inline-block;animation:flicker 4.2s infinite}
+.hero .tag{font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);margin-top:28px;max-width:20em}
+.hero .tag span{color:var(--ember)}
+.hero .sub{color:var(--muted);margin-top:14px;max-width:30em}
+.cue{margin-top:56px;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--faint);letter-spacing:.2em}
+.cue i{width:1px;height:46px;background:linear-gradient(var(--ember),transparent);animation:drip 2.4s infinite}
+@keyframes flicker{0%,100%{opacity:1}46%{opacity:1}48%{opacity:.78}50%{opacity:1}72%{opacity:.9}}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- 01 ignite ---------- */
+.ignite-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,110px);align-items:start;margin-top:12px}
+.ignite-grid>*{min-width:0}
+.passing{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s;position:relative}
+.passing::before{content:"";position:absolute;left:11px;top:14px;bottom:14px;width:1px;background:linear-gradient(var(--ember),var(--dust))}
+.passing li{position:relative;padding:0 0 30px 52px;counter-increment:s}
+.passing li::before{content:"";position:absolute;left:5px;top:9px;width:13px;height:13px;border-radius:50%;background:var(--night);border:1.5px solid var(--ember)}
+.passing li:first-child::before{background:var(--ember);box-shadow:0 0 14px 3px var(--flame)}
+.passing h3{font-size:22px;letter-spacing:.04em;display:flex;align-items:baseline;gap:12px}
+.passing h3::before{content:counter(s,decimal-leading-zero);font-family:var(--num);font-size:14px;color:var(--ember);letter-spacing:.1em;font-weight:500}
+.passing p{color:var(--muted);margin-top:6px}
+.quote{border-left:1px solid var(--ember);padding:6px 0 6px 24px;margin-top:40px;font-family:var(--serif);font-size:clamp(20px,2vw,24px);line-height:1.6;max-width:22em}
+.quote small{display:block;font-family:var(--sans);font-size:14px;color:var(--faint);margin-top:12px;letter-spacing:.1em}
+
+/* ---------- 02 fission (scrollytelling) ---------- */
+.fission-head{max-width:760px}
+.story{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);margin-top:40px}
+.steps{display:grid}
+.step{min-height:62vh;display:flex;align-items:center}
+.step:last-child{min-height:50vh}
+.step-card{border-left:1px solid var(--dust);padding:8px 0 8px 24px;transition:border-color .4s,opacity .4s;opacity:.38}
+.step.on .step-card{opacity:1;border-color:var(--ember)}
+.step-card b{font-family:var(--num);color:var(--ember);font-size:14px;letter-spacing:.2em;font-weight:500}
+.step-card h3{font-size:clamp(22px,2.2vw,28px);margin:8px 0 8px}
+.step-card p{color:var(--muted)}
+.figure{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px);align-self:start;padding-block:10px}
+.tally{display:flex;gap:28px;align-items:flex-end;margin-bottom:8px}
+.tally div{display:grid}
+.tally strong{font-family:var(--num);font-size:clamp(38px,4vw,54px);line-height:1;color:var(--ember);font-variant-numeric:tabular-nums;font-weight:600}
+.tally span{font-size:13px;color:var(--muted);letter-spacing:.12em;margin-top:6px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:14px 0 6px}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.legend .m{background:var(--ember);box-shadow:0 0 8px var(--flame)}
+.legend .l{border:1.5px solid var(--ember)}
+.fission-svg{width:100%;height:auto;display:block;overflow:visible}
+.tree-edge{fill:none;stroke:var(--ember);stroke-width:2;stroke-dasharray:4 6;opacity:0;transition:opacity .7s}
+.tree-edge.shown{opacity:.6;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.tree-node{opacity:0;transition:opacity .7s}
+.tree-node.shown{opacity:1}
+.tree-node circle{transform:scale(1.15);fill:var(--night-2);stroke:var(--ember);stroke-width:2;transition:fill .7s,filter .7s}
+.tree-node .node-name{font-size:20px;fill:var(--ink);text-anchor:middle;font-weight:600;font-family:var(--sans)}
+.tree-node .node-role{font-size:17px;fill:var(--muted);text-anchor:middle;font-family:var(--sans)}
+.tree-node.qualified circle{fill:var(--ember);filter:drop-shadow(0 0 10px var(--flame))}
+.tree-node.qualified .node-name{fill:var(--night)}
+.note{font-size:13px;color:var(--faint);margin-top:14px;max-width:46em;line-height:1.7}
+.relay{margin-top:30px;font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);max-width:24em;line-height:1.5}
+
+/* ---------- 03 group ---------- */
+.group-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--dust);border:1px solid var(--dust);margin-top:54px}
+.trait{background:rgba(10,15,30,.86);padding:28px 24px}
+.trait h3{font-size:22px;letter-spacing:.06em}
+.trait p{color:var(--muted);margin-top:8px;font-size:16px}
+.navigators{display:flex;align-items:center;gap:22px;margin-top:56px;flex-wrap:wrap}
+.navigators strong{font-family:var(--num);font-size:clamp(64px,8vw,104px);line-height:.9;color:var(--ember);text-shadow:0 0 30px rgba(255,140,50,.5);font-weight:600}
+.navigators p{max-width:30em;color:var(--muted)}
+.navigators p b{color:var(--ink);font-weight:600}
+.mag-head{margin-top:90px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.mag-head h3{font-size:clamp(26px,3vw,36px)}
+.mag-head p{color:var(--muted);font-size:15px}
+.mags{list-style:none;margin:26px 0 0;padding:0;display:grid}
+.mag{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start;padding:24px 0;border-top:1px solid var(--dust)}
+.mag:last-child{border-bottom:1px solid var(--dust)}
+.star{display:flex;align-items:center;gap:14px}
+.star i{flex:none;border-radius:50%;background:#fff3d6;box-shadow:0 0 calc(var(--s)*1.2) calc(var(--s)*.35) var(--ember),0 0 calc(var(--s)*3) calc(var(--s)*.6) var(--glow);width:var(--s);height:var(--s)}
+.star span{font-family:var(--num);font-size:30px;font-weight:600;color:var(--ink)}
+.mag h4{margin:0;font-family:var(--serif);font-size:21px}
+.mag h4 small{font-family:var(--num);font-size:14px;color:var(--ember);margin-left:10px;font-weight:500;letter-spacing:.08em}
+.mag p{color:var(--muted);font-size:15.5px;margin-top:6px}
+.mag .out{font-size:14.5px;color:var(--muted)}
+.mag .out b{display:block;font-size:12px;letter-spacing:.24em;color:var(--faint);font-weight:500;margin-bottom:4px}
+
+/* ---------- 04 reward ---------- */
+.reward{padding-bottom:60px}
+.bounty{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:var(--dust);border:1px solid var(--dust);margin-top:54px}
+.bounty>div{background:rgba(10,15,30,.86);padding:clamp(28px,4vw,48px)}
+.bounty .big{font-family:var(--num);font-weight:600;line-height:.95;color:var(--ember);font-size:clamp(84px,12vw,168px);text-shadow:0 0 40px rgba(255,130,50,.45);font-variant-numeric:tabular-nums}
+.bounty .big small{font-family:var(--serif);font-size:.26em;color:var(--ink);margin-left:10px;text-shadow:none}
+.bounty .mid{font-family:var(--num);font-weight:600;line-height:1;color:var(--ember);font-size:clamp(54px,7vw,92px)}
+.bounty .mid small{font-family:var(--serif);font-size:.34em;color:var(--ink);margin:0 6px}
+.bounty h3{font-size:22px;margin-top:24px}
+.bounty p{color:var(--muted);margin-top:8px;max-width:28em}
+.show{margin-top:70px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.show div{border-top:1px solid var(--ember);padding-top:14px}
+.show h4{margin:0;font-family:var(--serif);font-size:19px}
+.show p{color:var(--muted);font-size:15px;margin-top:4px}
+.cta{margin-top:90px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
+.cta h2{font-size:clamp(34px,4.6vw,56px)}
+.join{display:inline-flex;align-items:center;gap:14px;margin-top:30px;padding:18px 34px;border-radius:99px;background:linear-gradient(100deg,var(--flame),var(--ember));color:var(--night);font-weight:700;font-size:19px;text-decoration:none;letter-spacing:.06em;box-shadow:0 0 0 0 rgba(255,140,50,.5);animation:pulse 2.6s infinite}
+.join:hover{filter:brightness(1.08)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,140,50,.45)}70%{box-shadow:0 0 0 18px rgba(255,140,50,0)}100%{box-shadow:0 0 0 0 rgba(255,140,50,0)}}
+.login{font-size:14px;color:var(--faint);margin-top:14px}
+.contacts{display:grid;gap:18px}
+.contacts div{border-left:1px solid var(--dust);padding-left:18px}
+.contacts b{font-family:var(--serif);font-size:20px}
+.contacts p{color:var(--muted);font-size:15px}
+footer{position:relative;z-index:1;border-top:1px solid var(--dust);color:var(--faint);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:26px}
+
+/* ---------- edit toolbox ---------- */
+.tools{position:fixed;z-index:6;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));font-size:13px}
+.tools summary{list-style:none;cursor:pointer;padding:8px 14px;border-radius:99px;background:var(--night-2);border:1px solid var(--dust);color:var(--muted)}
+.tools summary::-webkit-details-marker{display:none}
+.tools[open] summary{color:var(--ink)}
+.tools div{position:absolute;right:0;bottom:46px;display:grid;gap:8px;width:220px;padding:14px;border-radius:12px;background:var(--night-2);border:1px solid var(--dust)}
+.tools button{font:inherit;color:var(--ink);background:var(--dust);border:0;border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
+.tools button[aria-pressed="true"]{background:var(--ember);color:var(--night)}
+.tools output{color:var(--muted);font-size:12px;line-height:1.5}
+body.editing [contenteditable="true"]{outline:1px dashed var(--faint);outline-offset:3px}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .ignite-grid,.cta,.bounty{grid-template-columns:1fr}
+  .group-grid,.show{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mag{grid-template-columns:72px minmax(0,1fr)}
+  .mag .out{grid-column:2}
+  .star span{font-size:22px}
+  .story{grid-template-columns:1fr;gap:0}
+  .figure{order:-1;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:2;background:linear-gradient(var(--night) 86%,transparent);padding-top:16px;padding-bottom:22px;margin-inline:-16px;padding-inline:16px}
+  .tally{gap:20px}
+  .legend{display:none}
+  .tree-node .node-role{display:none}
+  .tree-node .node-name{font-size:28px}
+  .step{min-height:46vh}
+  .step-card{background:rgba(10,15,30,.7)}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .chapters a{padding:3px 7px;font-size:13px}
+  .brand{font-size:16px}
+  .group-grid{grid-template-columns:1fr}
+  .show{grid-template-columns:1fr}
+  .tree-node .node-name{font-size:30px}
+}
+@media (max-width:420px){.chapters a:not([aria-current]){display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
-<body><div class="ambient-light" aria-hidden="true"></div><nav class="glass-nav" aria-label="章节导航"><a class="glass-brand" href="#intro">AI <span>星火计划</span></a><div class="glass-links"><a href="#benefits">收获</a><a href="#journey">参与</a><a href="#levels">等级</a><a href="#network">裂变</a></div><div class="reading-track" aria-hidden="true"><i></i></div></nav>
-<main class="viewport"><div class="frame"><article class="slide" aria-label="AI星火计划介绍">
-<div class="topline"><span>AI FIRST · 全员共学</span><span>面向全公司所有感兴趣的同事</span></div>
-<header class="hero" id="intro"><div><h1>AI <em>星火</em>计划</h1><p class="tagline">和同事一起学 AI，把方法用进工作里</p></div><div class="definition"><strong>一个持续成长的公司 AI 学习小组</strong><p>通过同事带教、岗位实践和成果分享，<br>让一个人的经验，成为更多人的能力。</p></div></header>
-<div class="main">
-<section class="column" id="benefits"><h2><small>01</small>你可以收获什么</h2><div class="benefit"><h3>有人带着学，方法用得上</h3><p>选择合适的师傅，从自己的工作问题入手。<br>整理资料、分析数据、撰写报告、自动化流程。</p></div><div class="benefit"><h3>成果获认可，也能成为师傅</h3><p>通过 AI First 小组评审，获得带教资格，<br>把自己的经验分享给更多同事。</p></div><div class="reward"><div><strong>100<span>元 / 人</span></strong><p>师傅成功带教一人<br>达到岗位要求并通过评审</p></div><div><strong>1<span>积分 = 1 元</span></strong><p>发布 AI 学习／应用场景<br>可获相应积分</p></div></div></section>
-<section class="column" id="journey"><h2><small>02</small>学会之后，继续带教</h2><ol class="steps"><li><span class="num">1</span><div><h3>选择师傅</h3><p>选择已具备资格的同事</p></div></li><li><span class="num">2</span><div><h3>岗位实践</h3><p>一起解决实际工作问题</p></div></li><li><span class="num">3</span><div><h3>登记成果</h3><p>达到要求，登记为“种子”</p></div></li><li><span class="num">4</span><div><h3>展示评审</h3><p>展示使用记录或业务应用</p></div></li><li><span class="num">5</span><div><h3>成为师傅</h3><p>通过 AI First 小组评审</p></div></li><li><span class="num">6</span><div><h3>接力带教</h3><p>帮助下一位同事成长</p></div></li></ol><div class="relay"><strong>学习者成为带教者，经验持续扩散</strong><p>每一颗通过评审的“种子”，<br>都能带出新的“种子”。这就是星火裂变。</p></div><p class="qualification">师傅资格：初始认定的星火领航员，或通过评审的“种子”。</p></section>
-<section class="column" id="features"><h2><small>03</small>这个计划有什么特点</h2><div class="feature"><h3>全员参与</h3><p>不限部门，围绕各自岗位需求学习。</p></div><div class="feature"><h3>实战学习</h3><p>用真实工作记录和应用演示展示成果。</p></div><div class="feature"><h3>接力成长</h3><p>学会、通过评审，再带更多同事学。</p></div><div class="feature"><h3>经验共享</h3><p>让有效的方法被更多同事借鉴和复用。</p></div></section>
-</div>
-<section class="column levels" id="levels"><h2><small>04</small>AI 能力成长路径</h2><p class="level-intro">AI First 小组评审定级依据，从 L1 到 L5 逐级提升。</p>
-<div class="feature"><h3>L1 · AI任务执行者</h3><div><p><b>20 分</b> · 能独立完成标准 AI 任务，将会议、文档、表格、流程和汇报材料转化为稳定产出；能使用飞书 AI 和至少 2 个外部 AI 工具。</p><p class="level-output">典型交付物：流程梳理、数据分析、PPT 初稿、岗位提示词</p></div></div>
-<div class="feature"><h3>L2 · AI场景实践者</h3><div><p><b>40 分</b> · 能围绕本岗位拆出高频场景，设计提示词模板、SOP 和轻量工作流；能判断哪些任务适合 AI，哪些不适合。</p><p class="level-output">典型交付物：岗位 AI 工作流、提示词模板库、部门案例包</p></div></div>
-<div class="feature"><h3>L3 · AI应用搭建者</h3><div><p><b>60 分</b> · 能用低代码、无代码、智能体或脚本工具搭建可复用应用，处理简单数据输入输出、权限边界、用户反馈和版本迭代。</p><p class="level-output">典型交付物：轻量智能体、自动化流程、部门知识助手、数据分析助手</p></div></div>
-<div class="feature"><h3>L4 · AI业务交付者</h3><div><p><b>80 分</b> · 接近 AI BP/FDE 角色，能深入业务现场，识别场景、测算 ROI、协调业务／IT／数据资源，推动真实流程从痛点到试点上线。</p><p class="level-output">典型交付物：端到端试点方案、ROI 测算、流程改造 MVP、上线复盘报告</p></div></div>
-<div class="feature"><h3>L5 · AI全栈构建者</h3><div><p><b>100 分</b> · 具备业务理解、产品设计、数据治理、模型调用、系统集成和安全合规的综合能力，能推动跨系统 AI 应用落地。</p><p class="level-output">典型交付物：跨系统 AI 应用、企业级智能体、ERP／CRM／流程系统集成方案</p></div></div>
-<p class="qualification">以上为能力等级评分，奖励积分另按活动规则计算。等级要求以平台“等级标准”为准。</p></section>
-<section class="column platform fission-section" id="network"><h2><small>05</small>一颗星火，带出一片星光</h2><p class="platform-intro">学会的人，成为新的师傅；新的师傅，再带出下一批同事。</p><div class="tree-legend"><span><i class="mentor-dot"></i>已具备师傅资格</span><span><i class="learner-dot"></i>正在学习实践</span><span>连线代表直接带教关系</span></div><div class="tree-scroll"><svg class="fission-svg" viewBox="0 0 1200 590" role="img" aria-labelledby="tree-title tree-desc"><title id="tree-title">星火带教裂变关系图</title><desc id="tree-desc">一位初始师傅带教两位同事，通过评审的同事再分别带教下一层，逐层形成带教网络。虚拟机制示意。</desc><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 300.0 V 183"/><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 900.0 V 183"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 150.0 V 333"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 450.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 750.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 1050.0 V 333"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 75.0 V 483"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 225.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 375.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 525.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 675.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 825.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 975.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 1125.0 V 483"/><g class="tree-node" data-generation="0" transform="translate(600.0,65)"><circle r="31"/><text class="node-name" y="6">初始师傅</text><text class="node-role" y="59">已认定师傅</text></g><g class="tree-node" data-generation="1" transform="translate(300.0,215)"><circle r="31"/><text class="node-name" y="6">同事 A</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="1" transform="translate(900.0,215)"><circle r="31"/><text class="node-name" y="6">同事 B</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(150.0,365)"><circle r="31"/><text class="node-name" y="6">A1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(450.0,365)"><circle r="31"/><text class="node-name" y="6">A2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(750.0,365)"><circle r="31"/><text class="node-name" y="6">B1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(1050.0,365)"><circle r="31"/><text class="node-name" y="6">B2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(75.0,515)"><circle r="31"/><text class="node-name" y="6">A1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(225.0,515)"><circle r="31"/><text class="node-name" y="6">A1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(375.0,515)"><circle r="31"/><text class="node-name" y="6">A2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(525.0,515)"><circle r="31"/><text class="node-name" y="6">A2-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(675.0,515)"><circle r="31"/><text class="node-name" y="6">B1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(825.0,515)"><circle r="31"/><text class="node-name" y="6">B1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(975.0,515)"><circle r="31"/><text class="node-name" y="6">B2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(1125.0,515)"><circle r="31"/><text class="node-name" y="6">B2-2</text><text class="node-role" y="59">待展开</text></g></svg></div><div class="demo-controls"><button id="play-tree">播放裂变过程</button><button id="next-tree">下一步</button><button id="reset-tree">重新开始</button></div><div id="tree-status" class="demo-status" role="status" aria-live="polite"></div><p class="platform-note">裂变机制示意，节点均为虚拟角色。每人带教两人仅为演示，不代表实际人数、固定比例或增长承诺；学习者须通过评审后才能成为师傅。</p></section>
-<section class="bottom"><div class="vision"><h2>让 AI 成为更多岗位的日常能力</h2><p>遇到问题有人交流，有效方法共同分享。<br>以持续学习和真实应用，推动公司的 AI 转型。</p></div><div class="action"><a class="join" href="https://alphaess.feishuapp.com/app/app_17er9ahsqsg" target="_blank" rel="noopener noreferrer">进入星火计划平台 ↗</a><p>想学习：带着一个工作问题开始<br>有经验：欢迎联系推荐成为师傅</p></div></section>
-<footer class="footer"><span>袁齐能 · 活动规则、参与咨询、评审与参会安排</span><span>吴佳吟 · 奖金发放、教练名单补充</span><span>AI 星火计划</span></footer>
-</article></div></main>
-<style>
-.tools{opacity:1;background:#ffffffed;padding:8px;border-radius:8px;box-shadow:0 3px 20px #0002;align-items:center;z-index:10;max-width:calc(100vw - 24px);flex-wrap:wrap}.tools button.active{background:var(--green);color:white}.edit-status{font-size:13px;color:#4d554f;padding:0 6px}.editing [contenteditable=true]{outline:1px dashed #a37c4280;outline-offset:4px;cursor:text}.editing [contenteditable=true]:focus{outline:2px solid var(--accent);background:#e9b66b15}.editing .join{cursor:text}@media(max-width:700px){.tools{display:flex;bottom:8px;right:12px}.tools button{font-size:12px;padding:6px 9px}.slide{padding-bottom:140px}}@media print{.tools{display:none}[contenteditable]{outline:none!important}}
-</style>
-<details class="glass-toolbox"><summary>编辑 / 导出 <span>＋</span></summary><nav class="tools" aria-label="编辑和演示控制"><span class="edit-status" role="status" aria-live="polite">点击编辑内容，可直接修改文字</span><button id="edit" aria-pressed="false">编辑内容</button><button id="link-edit">修改平台链接</button><button id="save">下载 HTML</button><button id="fullscreen">全屏演示</button><button onclick="window.print()">打印 / 保存 PDF</button></nav></details>
+<body>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top">AI <b>星火</b>计划</a>
+    <nav class="chapters" aria-label="章节">
+      <a href="#ignite">传火</a><a href="#fission">裂变</a><a href="#group">星群</a><a href="#reward">赏金</a>
+    </nav>
+  </div>
+  <div class="fuse" aria-hidden="true"><i></i><b></b></div>
+</header>
+
+<main>
+  <section class="wrap hero" id="top" data-scene="spark">
+    <p class="eyebrow">AI FIRST · 全员共学</p>
+    <h1>AI <em>星火</em><br>计划</h1>
+    <p class="tag">学 AI，赚赏金。<br>让一个人的经验，<span>成为更多人的能力。</span></p>
+    <p class="sub">面向全公司所有对 AI 感兴趣的同事。不限部门，不限基础，带上一个工作里的真实问题就能开始。</p>
+    <div class="cue" aria-hidden="true"><i></i>向下滚动，看一粒火种怎样燎原</div>
+  </section>
+
+  <section class="wrap chapter" id="ignite" data-scene="ignite">
+    <p class="kicker">第一章 · 传火</p>
+    <h2>火种从来不是凭空出现的，<br>它从<em>身边的人</em>手里传过来。</h2>
+    <div class="ignite-grid">
+      <div>
+        <p class="lede">公司里已经有一批同事，把 AI 用进了自己的日常工作。找到其中一位，带上你手头的一个真实问题，一起把它解决。这就是被点燃的那一刻。</p>
+        <p class="quote">会用的人带一把，<br>想学的人少走很多弯路。<small>点燃之后，你也会成为下一个传火的人</small></p>
+      </div>
+      <ol class="passing">
+        <li><h3>找到点火人</h3><p>从已具备带教资格的同事中，选一位作为你的师傅。</p></li>
+        <li><h3>从一个真实问题开始</h3><p>整理资料、分析数据、写报告、把重复操作自动化，从你岗位上的一件事入手。</p></li>
+        <li><h3>登记成果，成为“种子”</h3><p>达到岗位所需的 AI 能力要求后，在星火计划平台登记，等待评审。</p></li>
+        <li><h3>展示你的实践</h3><p>分享真实的 AI 使用记录，或演示自己搭建的业务应用，由 AI First 小组评审认定。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap chapter" id="fission" data-scene="fission">
+    <div class="fission-head">
+      <p class="kicker">第二章 · 裂变</p>
+      <h2>一颗星火，<br>带出<em>一片星光</em>。</h2>
+      <p class="lede">通过评审的“种子”，就获得带教资格。被点燃的人再去点燃别人，火光一层一层往外传。</p>
+    </div>
+    <div class="story">
+      <div class="steps">
+        <div class="step" data-step="0"><div class="step-card"><b>1 / 6</b><h3>一位领航员，带着经验出发</h3><p>初始认定的星火领航员，是第一批火种。</p></div></div>
+        <div class="step" data-step="1"><div class="step-card"><b>2 / 6</b><h3>点燃身边的两位同事</h3><p>领航员带着同事 A、B，一起解决真实的工作问题。</p></div></div>
+        <div class="step" data-step="2"><div class="step-card"><b>3 / 6</b><h3>种子通过评审，成为新的火种</h3><p>A、B 展示实践成果，通过 AI First 小组评审，获得带教资格。</p></div></div>
+        <div class="step" data-step="3"><div class="step-card"><b>4 / 6</b><h3>新师傅接过火把</h3><p>A、B 各自带教下一批同事，经验沿着带教关系继续传递。</p></div></div>
+        <div class="step" data-step="4"><div class="step-card"><b>5 / 6</b><h3>更多人获得带教资格</h3><p>下一批同事也通过评审，点火的人越来越多。</p></div></div>
+        <div class="step" data-step="5"><div class="step-card"><b>6 / 6</b><h3>星火燎原</h3><p>每一颗通过评审的种子，都能带出新的种子。学习网络就这样一层层展开。</p></div></div>
+      </div>
+      <figure class="figure" aria-label="星火带教裂变关系图">
+        <div class="tally" aria-live="polite">
+          <div><strong id="lit">15</strong><span>已被点燃</span></div>
+          <div><strong id="carriers">7</strong><span>可以传火</span></div>
+        </div>
+        <div class="legend"><span><i class="m"></i>已具备师傅资格</span><span><i class="l"></i>正在学习实践</span><span>虚线代表直接带教关系</span></div>
+        <svg class="fission-svg" viewBox="0 0 1200 590" role="img" aria-labelledby="tree-title tree-desc"><title id="tree-title">星火带教裂变关系图</title><desc id="tree-desc">一位领航员带教两位同事，通过评审的同事再分别带教下一层，逐层形成带教网络。虚拟机制示意。</desc><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 300.0 V 183"/><path class="tree-edge" data-generation="1" d="M 600.0 95 V 140 H 900.0 V 183"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 150.0 V 333"/><path class="tree-edge" data-generation="2" d="M 300.0 245 V 290 H 450.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 750.0 V 333"/><path class="tree-edge" data-generation="2" d="M 900.0 245 V 290 H 1050.0 V 333"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 75.0 V 483"/><path class="tree-edge" data-generation="3" d="M 150.0 395 V 440 H 225.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 375.0 V 483"/><path class="tree-edge" data-generation="3" d="M 450.0 395 V 440 H 525.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 675.0 V 483"/><path class="tree-edge" data-generation="3" d="M 750.0 395 V 440 H 825.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 975.0 V 483"/><path class="tree-edge" data-generation="3" d="M 1050.0 395 V 440 H 1125.0 V 483"/><g class="tree-node" data-generation="0" transform="translate(600.0,65)"><circle r="31"/><text class="node-name" y="6">领航</text><text class="node-role" y="59">星火领航员</text></g><g class="tree-node" data-generation="1" transform="translate(300.0,215)"><circle r="31"/><text class="node-name" y="6">A</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="1" transform="translate(900.0,215)"><circle r="31"/><text class="node-name" y="6">B</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(150.0,365)"><circle r="31"/><text class="node-name" y="6">A1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(450.0,365)"><circle r="31"/><text class="node-name" y="6">A2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(750.0,365)"><circle r="31"/><text class="node-name" y="6">B1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="2" transform="translate(1050.0,365)"><circle r="31"/><text class="node-name" y="6">B2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(75.0,515)"><circle r="31"/><text class="node-name" y="6">A1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(225.0,515)"><circle r="31"/><text class="node-name" y="6">A1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(375.0,515)"><circle r="31"/><text class="node-name" y="6">A2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(525.0,515)"><circle r="31"/><text class="node-name" y="6">A2-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(675.0,515)"><circle r="31"/><text class="node-name" y="6">B1-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(825.0,515)"><circle r="31"/><text class="node-name" y="6">B1-2</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(975.0,515)"><circle r="31"/><text class="node-name" y="6">B2-1</text><text class="node-role" y="59">待展开</text></g><g class="tree-node" data-generation="3" transform="translate(1125.0,515)"><circle r="31"/><text class="node-name" y="6">B2-2</text><text class="node-role" y="59">待展开</text></g></svg>
+      </figure>
+    </div>
+    <p class="relay">学会的人成为新的师傅，新的师傅再带出下一批同事。</p>
+    <p class="note">裂变机制示意，节点均为虚拟角色。每人带教两人仅为演示，不代表实际人数、固定比例或增长承诺；学习者须通过评审后才能成为师傅。</p>
+  </section>
+
+  <section class="wrap chapter" id="group" data-scene="group">
+    <p class="kicker">第三章 · 星群</p>
+    <h2>火光连在一起，<br>就是公司的 <em>AI 学习小组</em>。</h2>
+    <p class="lede">星火计划会在公司里形成一个持续成长的 AI 学习小组。遇到问题有人交流，有效的方法大家共享，一个人的摸索变成所有人的捷径。</p>
+    <div class="group-grid">
+      <div class="trait"><h3>全员参与</h3><p>不限部门，围绕各自岗位的需求学习。</p></div>
+      <div class="trait"><h3>实战学习</h3><p>用真实工作记录和应用演示展示成果。</p></div>
+      <div class="trait"><h3>接力成长</h3><p>学会、通过评审，再带更多同事学。</p></div>
+      <div class="trait"><h3>经验共享</h3><p>有效的方法被更多同事借鉴和复用。</p></div>
+    </div>
+    <div class="navigators">
+      <strong>26</strong>
+      <p><b>位星火领航员已经点亮。</b>他们是初始认定的带教人，名单可在星火计划平台查看。还有很多没被发现的领航员：如果你已经具备 AI 实践和带教能力，或知道合适的同事，欢迎推荐。</p>
+    </div>
+    <div class="mag-head">
+      <h3>在星群里，你会越来越亮</h3>
+      <p>AI First 小组评审定级依据，L1 到 L5 逐级提升</p>
+    </div>
+    <ol class="mags">
+      <li class="mag"><div class="star" style="--s:6px"><i></i><span>L1</span></div><div><h4>AI 任务执行者<small>20 分</small></h4><p>能独立完成标准 AI 任务，把会议、文档、表格、流程和汇报材料转化为稳定产出；能使用飞书 AI 和至少 2 个外部 AI 工具。</p></div><p class="out"><b>典型交付物</b>流程梳理、数据分析、PPT 初稿、岗位提示词</p></li>
+      <li class="mag"><div class="star" style="--s:9px"><i></i><span>L2</span></div><div><h4>AI 场景实践者<small>40 分</small></h4><p>能围绕本岗位拆出高频场景，设计提示词模板、SOP 和轻量工作流；能判断哪些任务适合 AI，哪些不适合。</p></div><p class="out"><b>典型交付物</b>岗位 AI 工作流、提示词模板库、部门案例包</p></li>
+      <li class="mag"><div class="star" style="--s:12px"><i></i><span>L3</span></div><div><h4>AI 应用搭建者<small>60 分</small></h4><p>能用低代码、无代码、智能体或脚本工具搭建可复用应用，处理简单数据输入输出、权限边界、用户反馈和版本迭代。</p></div><p class="out"><b>典型交付物</b>轻量智能体、自动化流程、部门知识助手、数据分析助手</p></li>
+      <li class="mag"><div class="star" style="--s:15px"><i></i><span>L4</span></div><div><h4>AI 业务交付者<small>80 分</small></h4><p>接近 AI BP/FDE 角色，能深入业务现场，识别场景、测算 ROI、协调业务／IT／数据资源，推动真实流程从痛点到试点上线。</p></div><p class="out"><b>典型交付物</b>端到端试点方案、ROI 测算、流程改造 MVP、上线复盘报告</p></li>
+      <li class="mag"><div class="star" style="--s:18px"><i></i><span>L5</span></div><div><h4>AI 全栈构建者<small>100 分</small></h4><p>具备业务理解、产品设计、数据治理、模型调用、系统集成和安全合规的综合能力，能推动跨系统 AI 应用落地。</p></div><p class="out"><b>典型交付物</b>跨系统 AI 应用、企业级智能体、ERP／CRM／流程系统集成方案</p></li>
+    </ol>
+    <p class="note">以上为能力等级评分，奖励积分另按活动规则计算。等级要求以平台“等级标准”为准。</p>
+  </section>
+
+  <section class="wrap chapter reward" id="reward" data-scene="reward">
+    <p class="kicker">第四章 · 赏金</p>
+    <h2>传出去的每一把火，<br>都有<em>回报</em>。</h2>
+    <div class="bounty">
+      <div>
+        <p class="big">100<small>元 / 人</small></p>
+        <h3>带教奖励</h3>
+        <p>每成功带教一名同事达到岗位要求并通过评审，师傅获得 100 元奖励。带得越多，拿得越多。</p>
+      </div>
+      <div>
+        <p class="mid">1<small>积分 =</small>1<small>元</small></p>
+        <h3>分享积分</h3>
+        <p>在平台发布 AI 学习或应用场景，可获得相应积分。分享越多，收获越多。</p>
+      </div>
+    </div>
+    <div class="show">
+      <div><h4>更快整理资料</h4><p>用 AI 归纳文档、会议和信息。</p></div>
+      <div><h4>分析数据</h4><p>让表格和数据更快出结论。</p></div>
+      <div><h4>撰写报告</h4><p>从初稿到成稿，省下反复打磨的时间。</p></div>
+      <div><h4>自动化与小应用</h4><p>把重复操作变成流程，搭一个解决实际问题的工具。</p></div>
+    </div>
+    <div class="cta">
+      <div>
+        <h2>你的火种，<br>从<em>今天</em>开始。</h2>
+        <a class="join" href="https://alphaess.feishuapp.com/app/app_17er9ahsqsg" target="_blank" rel="noopener noreferrer">进入星火计划平台登记 ↗</a>
+        <p class="login">请使用公司飞书账号登录。想学习，带着一个工作问题开始；有经验，欢迎推荐自己成为师傅。</p>
+      </div>
+      <div class="contacts">
+        <div><b>袁齐能</b><p>活动规则、参与咨询、评审时间与参会安排</p></div>
+        <div><b>吴佳吟</b><p>奖金发放、教练名单补充</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>AI 星火计划 · AI First 小组</span><span>让 AI 成为更多岗位的日常能力</span></div></footer>
+
+<details class="tools">
+  <summary>编辑 / 下载</summary>
+  <div>
+    <button id="edit" type="button" aria-pressed="false">编辑文字</button>
+    <button id="save" type="button">下载 HTML</button>
+    <output id="edit-status">点击“编辑文字”可直接修改页面内容</output>
+  </div>
+</details>
+
 <script>
-const slide=document.querySelector('.slide'),frame=document.querySelector('.frame');
-function fit(){slide.style.transform='none';frame.style.width='100%';frame.style.height='auto'}
-addEventListener('resize',fit);fit();
-document.querySelector('#fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen()}catch(e){alert('可按 F11 进入浏览器全屏模式。')}});
-const editButton=document.querySelector('#edit'),status=document.querySelector('.edit-status');
-const editable=[...slide.querySelectorAll('h1,h2,h3,p,.definition>strong,.reward strong,.relay>strong,.topline>span,.footer>span,.num,.join')].filter(el=>!el.closest('.demo-panel'));
-let editing=false,dirty=false;
-function setEditing(value){editing=value;document.body.classList.toggle('editing',value);editable.forEach(el=>{el.contentEditable=String(value);el.spellcheck=false});editButton.textContent=value?'完成编辑':'编辑内容';editButton.classList.toggle('active',value);editButton.setAttribute('aria-pressed',String(value));status.textContent=dirty?'有修改，请下载 HTML 保存':value?'点击虚线框编辑文字；Ctrl+Z 撤销':'点击编辑内容，可直接修改文字'}
-function changed(){dirty=true;status.textContent='有修改，请下载 HTML 保存'}
-editButton.addEventListener('click',()=>setEditing(!editing));
-slide.addEventListener('input',event=>{if(event.target.isContentEditable)changed()});
-slide.addEventListener('click',event=>{if(editing&&event.target.closest('a'))event.preventDefault()});
-slide.addEventListener('paste',event=>{if(!editing)return;event.preventDefault();document.execCommand('insertText',false,event.clipboardData.getData('text/plain'))});
-slide.addEventListener('drop',event=>{if(editing)event.preventDefault()});
-document.querySelector('#link-edit').addEventListener('click',()=>{const anchor=document.querySelector('.join');const value=prompt('请输入平台链接（https:// 或 http://）',anchor.href);if(value===null)return;try{const url=new URL(value);if(!['https:','http:'].includes(url.protocol))throw new Error();anchor.href=url.href;changed()}catch{alert('请输入有效的 http:// 或 https:// 链接。')}});
-document.querySelector('#save').addEventListener('click',()=>{const copy=document.documentElement.cloneNode(true);copy.querySelector('body').classList.remove('editing');copy.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));const btn=copy.querySelector('#edit');btn.textContent='编辑内容';btn.classList.remove('active');btn.setAttribute('aria-pressed','false');copy.querySelector('.edit-status').textContent='点击编辑内容，可直接修改文字';const html='<!doctype html>\n'+copy.outerHTML;const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));const anchor=document.createElement('a');anchor.href=url;anchor.download='AI星火计划-已编辑.html';document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);dirty=false;status.textContent='已发起下载，请确认文件已保存'});
-addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue=''}});
-addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'){event.preventDefault();document.querySelector('#save').click()}});
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- night sky ---------- */
+const cv=document.getElementById('sky'),cx=cv.getContext('2d');
+let W=0,H=0,DPR=1,scene='spark',t=0;
+const N=90,P=[];
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+for(let i=0;i<N;i++)P.push({x:0,y:0,a:0,r:1,rx:rnd(),ry:rnd(),sp:.4+rnd()*.9,ph:rnd()*6.28});
+let stars=[],links=[];
+function layout(){
+  DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;
+  cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);
+  const wide=W>900;seed=11;stars=[];
+  for(let i=0;i<26;i++)stars.push({x:(wide?.52+rnd()*.43:.06+rnd()*.88)*W,y:(.16+rnd()*.72)*H});
+  links=[];stars.forEach((s,i)=>{const d=stars.map((o,j)=>[j,Math.hypot(o.x-s.x,o.y-s.y)]).filter(e=>e[0]!==i).sort((a,b)=>a[1]-b[1]);
+    for(const [j] of d.slice(0,2)){const k=i<j?i+'-'+j:j+'-'+i;if(!links.includes(k))links.push(k)}});
+  links=links.map(k=>k.split('-').map(Number));
+  if(!P[0].x)P.forEach(p=>{p.x=p.rx*W;p.y=p.ry*H});
+}
+function target(p,i){
+  const wide=W>900,cx0=wide?W*.74:W*.72,cy0=H*.46;
+  switch(scene){
+    case 'spark':{
+      if(i===0)return[cx0,cy0,1,4.5];
+      const life=((t*.004*p.sp+p.ph)%1),ang=p.ph*3;
+      if(i<34)return[cx0+Math.sin(ang+t*.01)*18*life+(p.rx-.5)*30*life,cy0-life*H*.32,(1-life)*.9,1.6*(1-life)+.3];
+      return[p.rx*W,p.ry*H,.16,.8];}
+    case 'ignite':{
+      const a=[wide?W*.62:W*.3,H*.38],b=[wide?W*.84:W*.75,H*.62];
+      if(i===0)return[...a,1,4.5];
+      if(i===1){const k=Math.min(1,(Math.sin(t*.02)+1)/2*1.4);return[...b,.35+.65*k,2+2.5*k];}
+      if(i<30){const k=((t*.005*p.sp+p.ph)%1);return[a[0]+(b[0]-a[0])*k+Math.sin(k*9+p.ph)*10,a[1]+(b[1]-a[1])*k+Math.cos(k*7+p.ph)*10,Math.sin(k*3.14)*.85,1.4];}
+      return[p.rx*W,p.ry*H,.14,.8];}
+    case 'fission':return[p.rx*W,p.ry*H,.12+.08*Math.sin(t*.02+p.ph),.8];
+    case 'group':{
+      if(i<26){const s=stars[i];return[s.x,s.y,.75+.25*Math.sin(t*.03+p.ph),2.6];}
+      return[p.rx*W,p.ry*H,.22+.1*Math.sin(t*.02+p.ph),.9];}
+    case 'reward':{
+      const life=((t*.0025*p.sp+p.ph)%1);
+      return[p.rx*W+Math.sin(life*8+p.ph)*24,H*(1.05-life*1.15),Math.sin(life*3.14)*.9,1+p.sp*1.6];}
+  }
+}
+let linkA=0;
+function frame(){
+  t+=reduce?0:1;
+  cx.clearRect(0,0,W,H);
+  linkA+=((scene==='group'?1:0)-linkA)*.05;
+  if(linkA>.01){cx.strokeStyle='rgba(255,181,74,'+(.28*linkA)+')';cx.lineWidth=1;cx.beginPath();
+    for(const [a,b] of links){cx.moveTo(P[a].x,P[a].y);cx.lineTo(P[b].x,P[b].y)}cx.stroke();}
+  if(scene==='ignite'){cx.strokeStyle='rgba(255,181,74,.18)';cx.setLineDash([3,7]);cx.beginPath();cx.moveTo(P[0].x,P[0].y);cx.lineTo(P[1].x,P[1].y);cx.stroke();cx.setLineDash([]);}
+  cx.globalCompositeOperation='lighter';
+  P.forEach((p,i)=>{const [tx,ty,ta,tr]=target(p,i);const k=reduce?1:(scene==='reward'||scene==='spark')&&i>1?.18:.06;
+    p.x+=(tx-p.x)*k;p.y+=(ty-p.y)*k;p.a+=(ta-p.a)*.08;p.r+=(tr-p.r)*.08;if(reduce){p.a=ta;p.r=tr}
+    if(p.a<.02)return;
+    const g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5);
+    g.addColorStop(0,'rgba(255,214,150,'+p.a*.55+')');g.addColorStop(1,'rgba(255,110,40,0)');
+    cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r*5,0,6.283);cx.fill();
+    cx.fillStyle='rgba(255,246,222,'+p.a+')';cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();});
+  cx.globalCompositeOperation='source-over';
+  if(!reduce)requestAnimationFrame(frame);
+}
+addEventListener('resize',()=>{layout();if(reduce)frame()});
+layout();frame();
+
+/* ---------- chapters drive the sky ---------- */
+const navLinks=[...document.querySelectorAll('.chapters a')];
+const io=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting)continue;scene=e.target.dataset.scene;
+  navLinks.forEach(a=>a.hash==='#'+e.target.id?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
+  if(reduce)frame();}},{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('[data-scene]').forEach(s=>io.observe(s));
+
+/* ---------- fuse progress ---------- */
+const fuse=document.querySelector('.fuse i'),head=document.querySelector('.fuse b');let q=false;
+function prog(){const m=document.documentElement.scrollHeight-innerHeight,r=m>0?Math.min(1,scrollY/m):0;fuse.style.transform='scaleX('+r+')';head.style.left=(r*100)+'%';q=false}
+addEventListener('scroll',()=>{if(!q){q=true;requestAnimationFrame(prog)}},{passive:true});prog();
+
+/* ---------- fission steps ---------- */
+const states=[{v:0,q:0},{v:1,q:0},{v:1,q:1},{v:2,q:1},{v:2,q:2},{v:3,q:2}];
+const lit=document.getElementById('lit'),car=document.getElementById('carriers');
+function showTree(n){const s=states[n];
+  document.querySelectorAll('.tree-node').forEach(el=>{const g=+el.dataset.generation;el.classList.toggle('shown',g<=s.v);el.classList.toggle('qualified',g<=s.q);
+    el.querySelector('.node-role').textContent=g===0?'星火领航员':g<=s.q?'通过评审 · 新师傅':'学习实践中'});
+  document.querySelectorAll('.tree-edge').forEach(el=>el.classList.toggle('shown',+el.dataset.generation<=s.v));
+  lit.textContent=2**(s.v+1)-1;car.textContent=2**(s.q+1)-1;
+  document.querySelectorAll('.step').forEach(el=>el.classList.toggle('on',+el.dataset.step===n));}
+const so=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting)showTree(+e.target.dataset.step)},{rootMargin:'-40% 0px -45% 0px'});
+document.querySelectorAll('.step').forEach(s=>so.observe(s));
+/* Fully lit until the reader reaches the story, so the figure is complete at rest. */
+showTree(5);document.querySelectorAll('.step').forEach(el=>el.classList.remove('on'));
+
+/* ---------- edit & download ---------- */
+const editBtn=document.getElementById('edit'),status=document.getElementById('edit-status');
+const editable=[...document.querySelectorAll('main h1,main h2,main h3,main h4,main p,.contacts b,footer span')];
+let editing=false;
+editBtn.addEventListener('click',()=>{editing=!editing;document.body.classList.toggle('editing',editing);
+  editable.forEach(el=>{el.contentEditable=String(editing);el.spellcheck=false});
+  editBtn.textContent=editing?'完成编辑':'编辑文字';editBtn.setAttribute('aria-pressed',String(editing));
+  status.textContent=editing?'点击虚线框修改文字，改完请下载 HTML 保存':'点击“编辑文字”可直接修改页面内容';});
+document.querySelector('main').addEventListener('paste',e=>{if(!editing)return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))});
+document.querySelector('main').addEventListener('click',e=>{if(editing&&e.target.closest('a'))e.preventDefault()});
+document.getElementById('save').addEventListener('click',()=>{
+  const c=document.documentElement.cloneNode(true);c.querySelector('body').classList.remove('editing');
+  c.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+  const b=c.querySelector('#edit');b.textContent='编辑文字';b.setAttribute('aria-pressed','false');
+  const url=URL.createObjectURL(new Blob(['<!doctype html>\n'+c.outerHTML],{type:'text/html;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download='AI星火计划.html';document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);status.textContent='已发起下载。在预览环境中下载可能被拦截，请在正式页面操作';});
+})();
 </script>
-<script>
-let treeStep=0,treeTimer=null;
-const treeStates=[{visible:0,qualified:0,text:'一位已认定的师傅，带着经验开始。'},{visible:1,qualified:0,text:'师傅带教同事 A、B，一起解决真实工作问题。'},{visible:1,qualified:1,text:'A、B 通过评审，成为新的师傅。'},{visible:2,qualified:1,text:'新师傅分别带教下一批同事，经验沿关系链传递。'},{visible:2,qualified:2,text:'下一批同事通过评审，更多人获得带教资格。'},{visible:3,qualified:2,text:'更多师傅继续接力，学习网络逐层展开。'}];
-function showTree(){const state=treeStates[treeStep];document.querySelectorAll('.tree-node').forEach(node=>{const g=Number(node.dataset.generation);node.classList.toggle('shown',g<=state.visible);node.classList.toggle('qualified',g<=state.qualified);node.querySelector('.node-role').textContent=g===0?'已认定师傅':g<=state.qualified?'通过评审 · 新师傅':'学习实践中'});document.querySelectorAll('.tree-edge').forEach(edge=>edge.classList.toggle('shown',Number(edge.dataset.generation)<=state.visible));document.querySelector('#tree-status').textContent=(treeStep+1)+' / 6　'+state.text;document.querySelector('#next-tree').disabled=treeStep===5}
-function stopTree(){clearInterval(treeTimer);treeTimer=null;document.querySelector('#play-tree').textContent='播放裂变过程'}
-document.querySelector('#play-tree').addEventListener('click',()=>{if(treeTimer){stopTree();return}if(treeStep===5)treeStep=0;showTree();document.querySelector('#play-tree').textContent='暂停播放';treeTimer=setInterval(()=>{treeStep++;showTree();if(treeStep===5)stopTree()},2000)});
-document.querySelector('#next-tree').addEventListener('click',()=>{stopTree();treeStep=Math.min(5,treeStep+1);showTree()});document.querySelector('#reset-tree').addEventListener('click',()=>{stopTree();treeStep=0;showTree()});showTree();
-</script>
-<style id="glass-design">
-:root{--paper:#080d20;--ink:#eff5ff;--muted:#b6c4df;--accent:#81e7ff;--line:rgba(255,255,255,.18);--green:#e0eeff;--glass:rgba(255,255,255,.15)}
-html{scroll-padding-top:115px}body{background:#080d20;color:var(--ink);overflow-x:hidden;position:relative}body::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 75% 12% at 5% 10%,#2045a766,transparent 90%),radial-gradient(ellipse 65% 13% at 95% 24%,#7053c66b,transparent 90%),radial-gradient(ellipse 80% 13% at 0% 42%,#00899c55,transparent 90%),radial-gradient(ellipse 65% 13% at 100% 65%,#4c36b566,transparent 90%),radial-gradient(ellipse 70% 12% at 10% 90%,#167f9f55,transparent 90%)}
-.ambient-light{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 75% 15%,#525dc52e,transparent 50%),radial-gradient(ellipse at 10% 75%,#29bbca1a,transparent 60%);z-index:0}.viewport{position:relative;padding:0 32px}.slide{background:transparent;border:0;overflow:visible}.topline{padding:140px 20px 0;color:#a6bce2;max-width:1200px;font-size:15px;letter-spacing:2px}.topline span:last-child{color:#9fb3d3}.hero{max-width:1200px;padding:90px 20px 115px;min-height:650px;gap:60px;position:relative}.hero h1{font-size:clamp(64px,7vw,100px);letter-spacing:-3px;text-shadow:0 8px 45px #1c3b8c55}.hero h1 em{color:#9ceaff;text-shadow:0 0 44px #64dfff35}.tagline{color:#d4e4fc;font-size:24px;line-height:1.8}.definition{position:relative;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid #ffffff40;border-radius:24px;padding:38px 30px;box-shadow:0 22px 75px #0004,inset 0 1px 0 #ffffff26;transform:rotate(-2deg)}.definition::before,.definition::after{content:"";position:absolute;inset:0;border:1px solid #ffffff26;background:#ffffff06;border-radius:24px;pointer-events:none;z-index:-1}.definition::before{transform:translate(13px,14px) rotate(4deg)}.definition::after{transform:translate(25px,26px) rotate(6deg);opacity:.55}.definition strong{font-size:27px;color:#eff5ff}.definition p{color:#c4d2e9;font-size:20px}.main{display:block}.column,.column+.column,.levels,.fission-section,.column:nth-child(2){position:relative;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.26);border-radius:30px;margin:0 auto 38px;padding:60px;max-width:1200px;min-height:0;box-shadow:0 28px 80px #02081945,inset 0 1px 0 #ffffff24;scroll-margin-top:110px}.column h2{font-size:35px;line-height:1.5;margin-bottom:32px;letter-spacing:-1px}.column h2 small{font-family:Arial,sans-serif;color:#87d7f2;font-size:17px;letter-spacing:2px}.benefit h3,.feature h3,.steps h3{color:#f1f5ff}.benefit p,.feature p,.steps p,.qualification{color:#c1cde1}.benefit p,.feature p{font-size:20px}.feature{border-color:var(--line)}.reward strong,.levels b{color:#9fe9fc}.reward p{color:#b9c9e2}.reward{border-color:var(--line)}.num{color:#89b5d9}.relay{background:#06152d45;border:1px solid #ffffff22;border-left:3px solid #8ae6fd;border-radius:15px;box-shadow:inset 0 1px 0 #fff1}.relay p{color:#becfe9}.steps li:last-child .num,.steps li:last-child h3{color:#92e8ff}.levels .level-output{color:#94d6e9}.levels .feature h3{font-size:23px}.levels .feature{grid-template-columns:270px 1fr}.level-intro,.platform-intro{color:#bbcee6;font-size:21px}.bottom{max-width:1200px;min-height:0;margin:60px auto 0;padding:65px 60px;border:1px solid #ffffff2e;background:#ffffff0d;border-radius:30px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 28px 80px #02081945}.vision h2{font-size:35px}.vision p,.action p{color:#c1d3e9}.join{background:linear-gradient(120deg,#a4efff,#aaa5ff);color:#10223a;border:1px solid #ffffff66;border-radius:12px;box-shadow:0 7px 30px #89c5ff20;font-size:20px}.join:hover{background:#cff5ff;color:#10223a}.footer{max-width:1200px;color:#8ea3c4;padding:35px 20px 110px;font-size:14px}.glass-nav{position:fixed;top:22px;left:50%;transform:translateX(-50%);width:min(1140px,calc(100% - 64px));z-index:50;display:flex;align-items:center;justify-content:space-between;padding:19px 26px;border:1px solid #ffffff40;border-radius:20px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 14px 50px #03091855,inset 0 1px 0 #ffffff25;overflow:hidden}.glass-brand{font-size:22px;font-weight:700;color:#9aeaff;text-decoration:none;letter-spacing:1px}.glass-brand span{font-size:17px;color:#f3f8ff;margin-left:8px}.glass-links{display:flex;gap:10px}.glass-links a{color:#e0eafa;text-decoration:none;font-size:16px;padding:8px 15px;border-radius:10px;transition:background .2s,color .2s}.glass-links a:hover,.glass-links a[aria-current=true]{color:white;background:#ffffff1a}.reading-track{position:absolute;bottom:0;height:2px;left:0;right:0}.reading-track i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#64e5f8,#bba5ff)}.glass-toolbox{position:fixed;z-index:60;bottom:20px;right:24px;width:170px;background:var(--glass);border:1px solid #ffffff40;border-radius:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 45px #02061966;color:#f3f7ff}.glass-toolbox[open]{width:min(390px,calc(100vw - 40px))}.glass-toolbox summary{cursor:pointer;list-style:none;padding:16px 20px;font-size:15px}.glass-toolbox summary::-webkit-details-marker{display:none}.glass-toolbox summary span{float:right;color:#a3e5f7}.glass-toolbox .tools{display:flex;position:static;box-shadow:none;background:transparent;border:0;border-radius:0;padding:0 15px 15px;max-width:none;gap:8px;opacity:1}.tools button{background:#ffffff0d;color:#e1eeff;border:1px solid #ffffff2b;border-radius:8px;padding:9px 12px}.tools button:hover{background:#ffffff25;color:white}.tools button.active{background:#b5e8ff;color:#11213b}.edit-status{color:#c7d6ea;width:100%;font-size:13px;padding:5px 0}.tree-legend{color:#c4d2e8}.mentor-dot{background:#81ead3}.learner-dot{background:#bfa5ff}.tree-edge{stroke:#98a9f0;stroke-width:2}.tree-node circle{fill:#514873;stroke:#c8b1ff}.tree-node.qualified circle{fill:#1c625f;stroke:#91efdd}.tree-node .node-name,.tree-node.qualified .node-name{fill:#fff;font-size:15px}.tree-node .node-role{fill:#c7d7eb}.fission-section .platform-note{color:#a6b8d4}.demo-status{color:#99e7fc}.demo-controls button{border:1px solid #ffffff33;background:#ffffff0d;color:#dceaff;border-radius:10px}.demo-controls button:first-child{background:#c0edff;color:#122742}.demo-controls button:hover{box-shadow:0 0 25px #91dfff22}.demo-controls button:disabled{opacity:.35;cursor:default}.tree-scroll{background:#05102728;border:1px solid #ffffff12;border-radius:20px;padding:15px;margin:24px 0}.editing [contenteditable=true]{outline-color:#8de6ff88}.editing [contenteditable=true]:focus{background:#83ddff14;outline-color:#8de6ff}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #9deaff;outline-offset:4px}
-@media(max-width:800px){.viewport{padding:0 16px}.glass-nav{top:12px;width:calc(100% - 28px);padding:13px 16px;border-radius:17px}.glass-brand{font-size:19px}.glass-brand span{font-size:14px;margin-left:4px}.glass-links{gap:0}.glass-links a{font-size:13px;padding:8px}.topline{padding:110px 12px 0;font-size:11px;gap:20px;letter-spacing:0}.hero{padding:55px 12px 85px;min-height:0;grid-template-columns:1fr;gap:40px}.hero h1{font-size:60px}.tagline{font-size:20px}.definition{padding:28px 25px;transform:none;margin-right:20px}.definition strong{font-size:23px}.definition p{font-size:18px}.column,.column+.column,.levels,.fission-section,.column:nth-child(2){padding:30px 22px;border-radius:23px;margin-bottom:22px}.column h2{font-size:26px;letter-spacing:0}.benefit p,.feature p,.steps p{font-size:17px}.reward{gap:18px}.reward strong{font-size:36px}.reward strong span{font-size:17px}.reward p{font-size:16px}.feature,.levels .feature{display:block}.feature h3{margin-bottom:10px}.level-intro,.platform-intro{font-size:18px}.bottom{padding:35px 24px;margin-top:24px;border-radius:23px}.vision h2{font-size:28px}.vision p{font-size:19px}.action p{font-size:17px}.footer{padding:25px 12px 110px}.slide{padding:0}.tree-scroll{margin-left:-10px;margin-right:-10px}.glass-toolbox{bottom:14px;right:14px}.fission-section .demo-status{font-size:18px}}
-@media(max-width:390px){.glass-brand span{display:none}.glass-links a{padding:8px 10px}.hero h1{font-size:52px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-@media print{body{background:white;color:#17283f}body::before,.ambient-light,.glass-nav,.glass-toolbox{display:none}.viewport{padding:0}.slide{background:white}.topline{padding:10px 0;color:#17283f}.hero{padding:30px 0;min-height:0}.hero h1,.hero h1 em,.tagline,.definition strong{color:#17283f;text-shadow:none}.definition,.column,.column+.column,.levels,.fission-section,.column:nth-child(2),.bottom{background:white;color:#17283f;backdrop-filter:none;border:1px solid #ddd;box-shadow:none;margin:20px 0;padding:25px}.definition::before,.definition::after{display:none}p,.benefit p,.feature p,.steps p,.qualification,.vision p,.action p,.footer,.definition p,.tree-legend{color:#48576a!important}h3,.feature h3,.steps h3,.benefit h3{color:#17283f}.tree-node .node-role{fill:#48576a}.tree-scroll{background:#17283f}.footer{padding:20px 0}}
-</style><script>
-const progressBar=document.querySelector('.reading-track i');let scrollQueued=false;
-function updateGlassProgress(){const max=document.documentElement.scrollHeight-innerHeight;progressBar.style.transform='scaleX('+(max>0?Math.min(1,scrollY/max):0)+')';scrollQueued=false}
-addEventListener('scroll',()=>{if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateGlassProgress)}},{passive:true});addEventListener('resize',updateGlassProgress);updateGlassProgress();
-const chapterLinks=[...document.querySelectorAll('.glass-links a')];
-if('IntersectionObserver' in window){const chapters=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){chapterLinks.forEach(a=>{if(a.hash==='#'+entry.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}}},{rootMargin:'-20% 0px -55% 0px'});document.querySelectorAll('#benefits,#journey,#levels,#network').forEach(el=>chapters.observe(el))}
-</script>
-</body></html>
-
-
-
-
+</body>
+</html>
